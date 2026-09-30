@@ -1,0 +1,689 @@
+[+] Firestore emulator initialized (Project: demo-klinik-review, Database: klinikdb, Host: 127.0.0.1:8080).
+[STARTUP] Process started
+test_cleanup_aborts_deletion_if_promoted_during_run (test_cleanup.TestCleanupPendingScans.test_cleanup_aborts_deletion_if_promoted_during_run) ... [2026-09-24 22:55:34] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:34.699168+00:00)
+[2026-09-24 22:55:34] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:34] [INFO]   evaluated: 1
+[2026-09-24 22:55:34] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:34] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:34] [INFO]   skipped_promoted: 1
+[2026-09-24 22:55:34] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:34] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:34] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:34] [INFO]   gcs_deleted: 0
+[2026-09-24 22:55:34] [INFO]   gcs_already_missing: 0
+[2026-09-24 22:55:34] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:34] [INFO]   firestore_deleted: 0
+[2026-09-24 22:55:34] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:34] [INFO]   dry_run: False
+[2026-09-24 22:55:34] [INFO]   retention_hours: 24
+ok
+test_cleanup_crashes_after_gcs_delete_promotion_remains_blocked (test_cleanup.TestCleanupPendingScans.test_cleanup_crashes_after_gcs_delete_promotion_remains_blocked)
+If cleanup deletes the GCS blob and crashes before doc deletion, promotion remains blocked even after lease expires. ... [-] Model file not found at: /Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/acne2812022.h5
+[!] Server will run without model. /predict will return mock results.
+{"request_id": "28a6910961d44c7da8f7daa65ce142cc", "route": "/api/history/", "method": "POST", "status": 409, "total_duration_ms": 1.08, "firestore_duration_ms": 0.48}
+ok
+test_cleanup_deletes_orphan_firestore_if_gcs_is_404 (test_cleanup.TestCleanupPendingScans.test_cleanup_deletes_orphan_firestore_if_gcs_is_404) ... [2026-09-24 22:55:34] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:34.706609+00:00)
+[2026-09-24 22:55:34] [INFO] Targeting claimed scan scan_orphan (claim_id: b5d3d9f6-6163-4641-a745-7d16284501f5, image: anonymous/scan_orphan/original.jpg)
+[2026-09-24 22:55:34] [INFO] GCS blob not found (404): anonymous/scan_orphan/original.jpg
+[2026-09-24 22:55:34] [INFO] Finalized Firestore pending_scan doc deletion: scan_orphan
+[2026-09-24 22:55:34] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:34] [INFO]   evaluated: 1
+[2026-09-24 22:55:34] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:34] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:34] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:34] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:34] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:34] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:34] [INFO]   gcs_deleted: 0
+[2026-09-24 22:55:34] [INFO]   gcs_already_missing: 1
+[2026-09-24 22:55:34] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:34] [INFO]   firestore_deleted: 1
+[2026-09-24 22:55:34] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:34] [INFO]   dry_run: False
+[2026-09-24 22:55:34] [INFO]   retention_hours: 24
+ok
+test_cleanup_dry_run_does_not_mutate (test_cleanup.TestCleanupPendingScans.test_cleanup_dry_run_does_not_mutate) ... [2026-09-24 22:55:34] [INFO] Starting pending scan cleanup (dry_run=True, retention=24h, cutoff=2026-09-23T17:25:34.707488+00:00)
+[2026-09-24 22:55:34] [INFO] [DRY-RUN] Would delete GCS blob: anonymous/scan_abandoned/original.jpg
+[2026-09-24 22:55:34] [INFO] [DRY-RUN] Would delete Firestore pending_scan doc: scan_abandoned
+[2026-09-24 22:55:34] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:34] [INFO]   evaluated: 1
+[2026-09-24 22:55:34] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:34] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:34] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:34] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:34] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:34] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:34] [INFO]   gcs_deleted: 1
+[2026-09-24 22:55:34] [INFO]   gcs_already_missing: 0
+[2026-09-24 22:55:34] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:34] [INFO]   firestore_deleted: 1
+[2026-09-24 22:55:34] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:34] [INFO]   dry_run: True
+[2026-09-24 22:55:34] [INFO]   retention_hours: 24
+ok
+test_cleanup_execution_deletes_gcs_then_firestore (test_cleanup.TestCleanupPendingScans.test_cleanup_execution_deletes_gcs_then_firestore) ... [2026-09-24 22:55:34] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:34.708794+00:00)
+[2026-09-24 22:55:34] [INFO] Targeting claimed scan scan_abandoned (claim_id: 3bfd52e8-ae1f-4788-9220-6a5d124fef58, image: anonymous/scan_abandoned/original.jpg)
+[2026-09-24 22:55:34] [INFO] Deleted GCS blob: anonymous/scan_abandoned/original.jpg
+[2026-09-24 22:55:34] [INFO] Finalized Firestore pending_scan doc deletion: scan_abandoned
+[2026-09-24 22:55:34] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:34] [INFO]   evaluated: 1
+[2026-09-24 22:55:34] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:34] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:34] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:34] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:34] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:34] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:34] [INFO]   gcs_deleted: 1
+[2026-09-24 22:55:34] [INFO]   gcs_already_missing: 0
+[2026-09-24 22:55:34] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:34] [INFO]   firestore_deleted: 1
+[2026-09-24 22:55:34] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:34] [INFO]   dry_run: False
+[2026-09-24 22:55:34] [INFO]   retention_hours: 24
+ok
+test_cleanup_preserves_promoted_scans (test_cleanup.TestCleanupPendingScans.test_cleanup_preserves_promoted_scans) ... [2026-09-24 22:55:34] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:34.709891+00:00)
+[2026-09-24 22:55:34] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:34] [INFO]   evaluated: 1
+[2026-09-24 22:55:34] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:34] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:34] [INFO]   skipped_promoted: 1
+[2026-09-24 22:55:34] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:34] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:34] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:34] [INFO]   gcs_deleted: 0
+[2026-09-24 22:55:34] [INFO]   gcs_already_missing: 0
+[2026-09-24 22:55:34] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:34] [INFO]   firestore_deleted: 0
+[2026-09-24 22:55:34] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:34] [INFO]   dry_run: False
+[2026-09-24 22:55:34] [INFO]   retention_hours: 24
+ok
+test_cleanup_preserves_recent_scans_within_retention (test_cleanup.TestCleanupPendingScans.test_cleanup_preserves_recent_scans_within_retention) ... [2026-09-24 22:55:34] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:34.710874+00:00)
+[2026-09-24 22:55:34] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:34] [INFO]   evaluated: 1
+[2026-09-24 22:55:34] [INFO]   skipped_within_retention: 1
+[2026-09-24 22:55:34] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:34] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:34] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:34] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:34] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:34] [INFO]   gcs_deleted: 0
+[2026-09-24 22:55:34] [INFO]   gcs_already_missing: 0
+[2026-09-24 22:55:34] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:34] [INFO]   firestore_deleted: 0
+[2026-09-24 22:55:34] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:34] [INFO]   dry_run: False
+[2026-09-24 22:55:34] [INFO]   retention_hours: 24
+ok
+test_cleanup_preserves_scans_referenced_in_histories (test_cleanup.TestCleanupPendingScans.test_cleanup_preserves_scans_referenced_in_histories) ... [2026-09-24 22:55:34] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:34.711668+00:00)
+[2026-09-24 22:55:34] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:34] [INFO]   evaluated: 1
+[2026-09-24 22:55:34] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:34] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:34] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:34] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:34] [INFO]   skipped_in_history: 1
+[2026-09-24 22:55:34] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:34] [INFO]   gcs_deleted: 0
+[2026-09-24 22:55:34] [INFO]   gcs_already_missing: 0
+[2026-09-24 22:55:34] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:34] [INFO]   firestore_deleted: 0
+[2026-09-24 22:55:34] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:34] [INFO]   dry_run: False
+[2026-09-24 22:55:34] [INFO]   retention_hours: 24
+ok
+test_cleanup_records_failure_without_reverting_to_pending (test_cleanup.TestCleanupPendingScans.test_cleanup_records_failure_without_reverting_to_pending)
+A failed GCS deletion records failure metadata and retains status='deleting', never reverting to 'pending'. ... [2026-09-24 22:55:34] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:34.713440+00:00)
+[2026-09-24 22:55:34] [INFO] Targeting claimed scan scan_gcs_fail (claim_id: d1f23265-4579-411c-94b1-a0f8782952ae, image: anonymous/scan_gcs_fail/original.jpg)
+[2026-09-24 22:55:34] [ERROR] Failed to delete GCS blob anonymous/scan_gcs_fail/original.jpg: Storage timeout error
+[2026-09-24 22:55:34] [INFO] Durably recorded deletion failure for scan scan_gcs_fail.
+[2026-09-24 22:55:34] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:34] [INFO]   evaluated: 1
+[2026-09-24 22:55:34] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:34] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:34] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:34] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:34] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:34] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:34] [INFO]   gcs_deleted: 0
+[2026-09-24 22:55:34] [INFO]   gcs_already_missing: 0
+[2026-09-24 22:55:34] [INFO]   gcs_failed: 1
+[2026-09-24 22:55:34] [INFO]   firestore_deleted: 0
+[2026-09-24 22:55:34] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:34] [INFO]   dry_run: False
+[2026-09-24 22:55:34] [INFO]   retention_hours: 24
+ok
+test_cleanup_rejects_invalid_max_scans (test_cleanup.TestCleanupPendingScans.test_cleanup_rejects_invalid_max_scans) ... ok
+test_cleanup_rejects_negative_or_zero_retention (test_cleanup.TestCleanupPendingScans.test_cleanup_rejects_negative_or_zero_retention) ... ok
+test_cleanup_retains_firestore_doc_if_gcs_delete_fails (test_cleanup.TestCleanupPendingScans.test_cleanup_retains_firestore_doc_if_gcs_delete_fails) ... [2026-09-24 22:55:34] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:34.714398+00:00)
+[2026-09-24 22:55:34] [INFO] Targeting claimed scan scan_error (claim_id: 2029cbfc-f375-4920-be7f-48c960c62a39, image: anonymous/scan_error/original.jpg)
+[2026-09-24 22:55:34] [ERROR] Failed to delete GCS blob anonymous/scan_error/original.jpg: GCS connection timeout
+[2026-09-24 22:55:34] [INFO] Durably recorded deletion failure for scan scan_error.
+[2026-09-24 22:55:34] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:34] [INFO]   evaluated: 1
+[2026-09-24 22:55:34] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:34] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:34] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:34] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:34] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:34] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:34] [INFO]   gcs_deleted: 0
+[2026-09-24 22:55:34] [INFO]   gcs_already_missing: 0
+[2026-09-24 22:55:34] [INFO]   gcs_failed: 1
+[2026-09-24 22:55:34] [INFO]   firestore_deleted: 0
+[2026-09-24 22:55:34] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:34] [INFO]   dry_run: False
+[2026-09-24 22:55:34] [INFO]   retention_hours: 24
+ok
+test_cleanup_skips_future_created_at (test_cleanup.TestCleanupPendingScans.test_cleanup_skips_future_created_at) ... [2026-09-24 22:55:34] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:34.715254+00:00)
+[2026-09-24 22:55:34] [WARNING] Scan scan_future has future created_at timestamp: '2026-09-26T17:25:34.714890+00:00'. Skipping.
+[2026-09-24 22:55:34] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:34] [INFO]   evaluated: 1
+[2026-09-24 22:55:34] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:34] [INFO]   skipped_invalid_created_at: 1
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:34] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:34] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:34] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:34] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:34] [INFO]   gcs_deleted: 0
+[2026-09-24 22:55:34] [INFO]   gcs_already_missing: 0
+[2026-09-24 22:55:34] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:34] [INFO]   firestore_deleted: 0
+[2026-09-24 22:55:34] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:34] [INFO]   dry_run: False
+[2026-09-24 22:55:34] [INFO]   retention_hours: 24
+ok
+test_cleanup_skips_mismatched_doc_id_and_scan_id (test_cleanup.TestCleanupPendingScans.test_cleanup_skips_mismatched_doc_id_and_scan_id) ... [2026-09-24 22:55:34] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:34.715974+00:00)
+[2026-09-24 22:55:34] [WARNING] Document ID 'doc_id_abc' does not match scan_id 'scan_id_xyz'. Skipping.
+[2026-09-24 22:55:34] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:34] [INFO]   evaluated: 1
+[2026-09-24 22:55:34] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:34] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_id: 1
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:34] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:34] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:34] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:34] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:34] [INFO]   gcs_deleted: 0
+[2026-09-24 22:55:34] [INFO]   gcs_already_missing: 0
+[2026-09-24 22:55:34] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:34] [INFO]   firestore_deleted: 0
+[2026-09-24 22:55:34] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:34] [INFO]   dry_run: False
+[2026-09-24 22:55:34] [INFO]   retention_hours: 24
+ok
+test_cleanup_skips_mismatched_image_path (test_cleanup.TestCleanupPendingScans.test_cleanup_skips_mismatched_image_path) ... [2026-09-24 22:55:34] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:34.716828+00:00)
+[2026-09-24 22:55:34] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:34] [INFO]   evaluated: 1
+[2026-09-24 22:55:34] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:34] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_path: 1
+[2026-09-24 22:55:34] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:34] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:34] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:34] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:34] [INFO]   gcs_deleted: 0
+[2026-09-24 22:55:34] [INFO]   gcs_already_missing: 0
+[2026-09-24 22:55:34] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:34] [INFO]   firestore_deleted: 0
+[2026-09-24 22:55:34] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:34] [INFO]   dry_run: False
+[2026-09-24 22:55:34] [INFO]   retention_hours: 24
+ok
+test_cleanup_skips_missing_or_invalid_created_at (test_cleanup.TestCleanupPendingScans.test_cleanup_skips_missing_or_invalid_created_at) ... [2026-09-24 22:55:34] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:34.717603+00:00)
+[2026-09-24 22:55:34] [WARNING] Scan scan_missing missing created_at timestamp. Skipping.
+[2026-09-24 22:55:34] [WARNING] Scan scan_invalid has invalid created_at timestamp: 'invalid-date'. Skipping.
+[2026-09-24 22:55:34] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:34] [INFO]   evaluated: 2
+[2026-09-24 22:55:34] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:34] [INFO]   skipped_invalid_created_at: 2
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:34] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:34] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:34] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:34] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:34] [INFO]   gcs_deleted: 0
+[2026-09-24 22:55:34] [INFO]   gcs_already_missing: 0
+[2026-09-24 22:55:34] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:34] [INFO]   firestore_deleted: 0
+[2026-09-24 22:55:34] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:34] [INFO]   dry_run: False
+[2026-09-24 22:55:34] [INFO]   retention_hours: 24
+ok
+test_concurrent_promotion_and_cleanup_when_image_path_absent (test_cleanup.TestCleanupPendingScans.test_concurrent_promotion_and_cleanup_when_image_path_absent)
+Scans without image_path must also require transactional claim; promotion cannot race. ... {"request_id": "d43a6ffc98594fdba59f134cc3afc2d3", "route": "/api/history/", "method": "POST", "status": 409, "total_duration_ms": 2.39, "firestore_duration_ms": 0.42}
+ok
+test_delayed_prediction_cannot_overwrite_deletion_claim (test_cleanup.TestCleanupPendingScans.test_delayed_prediction_cannot_overwrite_deletion_claim)
+A delayed prediction finishing after a deletion claim must fail with 409 Conflict, preserving deletion state. ... ok
+test_deterministic_concurrency_cleanup_claims_promotion_fails (test_cleanup.TestCleanupPendingScans.test_deterministic_concurrency_cleanup_claims_promotion_fails) ... {"request_id": "d2392eeba0444d4abf5bb40b94dffa83", "route": "/api/history/", "method": "POST", "status": 409, "total_duration_ms": 0.89, "firestore_duration_ms": 0.5}
+ok
+test_failed_fresh_read_cannot_authorize_cleanup (test_cleanup.TestCleanupPendingScans.test_failed_fresh_read_cannot_authorize_cleanup)
+If transactional read returns nonexistent snapshot or fails, cleanup must not be authorized. ... ok
+test_path_safety (test_cleanup.TestCleanupPendingScans.test_path_safety) ... ok
+test_stale_or_missing_claim_id_cannot_finalize_or_update (test_cleanup.TestCleanupPendingScans.test_stale_or_missing_claim_id_cannot_finalize_or_update)
+Missing claim_id, mismatched claim_id, or non-deleting status must reject mutation. ... ok
+test_storage_timeout_does_not_reopen_scan_for_promotion (test_cleanup.TestCleanupPendingScans.test_storage_timeout_does_not_reopen_scan_for_promotion)
+A storage timeout during cleanup records failure and leaves status='deleting', never reopening promotion. ... ok
+test_transaction_callbacks_perform_no_direct_writes_or_deletes (test_cleanup.TestCleanupPendingScans.test_transaction_callbacks_perform_no_direct_writes_or_deletes)
+Transaction callbacks must queue operations exclusively via tx, never calling ref.update or ref.delete directly. ... ok
+test_transactional_occ_conflict_and_retry_interleaving (test_cleanup.TestCleanupPendingScans.test_transactional_occ_conflict_and_retry_interleaving)
+Concurrent cleanup and promotion: cleanup commits first; promotion retries fresh read and aborts cleanly. ... {"request_id": "9d20e00282d04931baf1b9ff08ca7763", "route": "/api/history/", "method": "POST", "status": 409, "total_duration_ms": 0.32, "firestore_duration_ms": 0.01}
+ok
+test_upload_timeout_404_cleanup_recovers_when_upload_completes_late (test_cleanup.TestCleanupPendingScans.test_upload_timeout_404_cleanup_recovers_when_upload_completes_late)
+Upload timeout + 404 delete retains tracking doc; late-arriving image is cleanly recovered and purged by cleanup. ... [2026-09-24 22:55:34] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:34.787887+00:00)
+[2026-09-24 22:55:34] [INFO] Targeting claimed scan scan_late_upload (claim_id: 2d1f5590-cd1e-4183-b57d-3c639e8fc96f, image: anonymous/scan_late_upload/original.jpg)
+[2026-09-24 22:55:34] [INFO] Deleted GCS blob: anonymous/scan_late_upload/original.jpg
+[2026-09-24 22:55:34] [INFO] Finalized Firestore pending_scan doc deletion: scan_late_upload
+[2026-09-24 22:55:34] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:34] [INFO]   evaluated: 1
+[2026-09-24 22:55:34] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:34] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:34] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:34] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:34] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:34] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:34] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:34] [INFO]   gcs_deleted: 1
+[2026-09-24 22:55:34] [INFO]   gcs_already_missing: 0
+[2026-09-24 22:55:34] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:34] [INFO]   firestore_deleted: 1
+[2026-09-24 22:55:34] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:34] [INFO]   dry_run: False
+[2026-09-24 22:55:34] [INFO]   retention_hours: 24
+ok
+test_worker_lease_expiry_worker_b_takes_over_worker_a_cannot_finalize (test_cleanup.TestCleanupPendingScans.test_worker_lease_expiry_worker_b_takes_over_worker_a_cannot_finalize)
+Worker A pauses, its lease expires, Worker B resumes cleanup with new claim_id, and Worker A cannot finalize. ... ok
+test_check_user_consent_complete (test_consent.TestConsentLogic.test_check_user_consent_complete) ... ok
+test_check_user_consent_missing_or_false (test_consent.TestConsentLogic.test_check_user_consent_missing_or_false) ... ok
+test_check_user_consent_outdated_policy_version (test_consent.TestConsentLogic.test_check_user_consent_outdated_policy_version) ... ok
+test_consent_endpoint_records_and_returns_updated_user (test_consent.TestConsentLogic.test_consent_endpoint_records_and_returns_updated_user) ... /Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/routes/auth.py:375: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  server_utc_timestamp = datetime.datetime.utcnow().isoformat()
+{"request_id": "be650425d058464192d4f7d6bc78a940", "route": "/api/auth/consent", "method": "POST", "status": 200, "total_duration_ms": 1.98}
+ok
+test_consent_endpoint_requires_auth (test_consent.TestConsentLogic.test_consent_endpoint_requires_auth) ... {"request_id": "2081a458e74241d2812f2859c2565ed2", "route": "/api/auth/consent", "method": "POST", "status": 401, "total_duration_ms": 0.08}
+ok
+test_get_current_user_expired_token (test_consent.TestConsentLogic.test_get_current_user_expired_token) ... {"request_id": "b8852add66c84f68ab30f745a9c4181f", "route": "/api/auth/me", "method": "GET", "status": 401, "total_duration_ms": 0.1}
+ok
+test_get_current_user_outdated_policy_requires_renewed_consent (test_consent.TestConsentLogic.test_get_current_user_outdated_policy_requires_renewed_consent) ... {"request_id": "52be11cb4c284ba9b9e95021fddcf048", "route": "/api/auth/me", "method": "GET", "status": 200, "total_duration_ms": 0.35}
+ok
+test_get_current_user_valid_token (test_consent.TestConsentLogic.test_get_current_user_valid_token) ... {"request_id": "a8fb189d310249ab9a724d634d9261df", "route": "/api/auth/me", "method": "GET", "status": 200, "total_duration_ms": 0.17}
+ok
+test_google_auth_new_user_requires_consent (test_consent.TestConsentLogic.test_google_auth_new_user_requires_consent) ... /Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/routes/auth.py:305: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  'created_at': datetime.datetime.utcnow().isoformat()
+/Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/routes/auth.py:321: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  'exp': datetime.datetime.utcnow() + datetime.timedelta(days=7)
+{"request_id": "d4fb85ec244a4423b00b16970c4bfeac", "route": "/api/auth/google", "method": "POST", "status": 200, "total_duration_ms": 0.61, "google_token_verification_duration_ms": 0.08, "firestore_duration_ms": 0.1}
+ok
+test_google_auth_returning_consented_user_consent_false (test_consent.TestConsentLogic.test_google_auth_returning_consented_user_consent_false) ... {"request_id": "889ce8e7039b4948b2a74990b804455f", "route": "/api/auth/google", "method": "POST", "status": 200, "total_duration_ms": 0.29, "google_token_verification_duration_ms": 0.03}
+ok
+test_google_auth_returning_unconsented_user_requires_consent (test_consent.TestConsentLogic.test_google_auth_returning_unconsented_user_requires_consent) ... {"request_id": "e0d2a423ff3b495996bf61fdbcbd4758", "route": "/api/auth/google", "method": "POST", "status": 200, "total_duration_ms": 0.27, "google_token_verification_duration_ms": 0.02}
+ok
+test_history_post_blocks_unconsented_user (test_consent.TestConsentLogic.test_history_post_blocks_unconsented_user) ... {"request_id": "366b2701b6444b13b121b03427595ed2", "route": "/api/history/", "method": "POST", "status": 403, "total_duration_ms": 0.17}
+ok
+test_predict_exception_after_completion_does_not_delete_valid_image (test_consent.TestConsentLogic.test_predict_exception_after_completion_does_not_delete_valid_image)
+An unexpected error occurring after successful pending scan persistence must NOT delete the valid image. ... /Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/app.py:325: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  now_utc = datetime.utcnow().isoformat()
+GCS upload SUCCESS
+/Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/app.py:548: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  now_utc = datetime.utcnow().isoformat()
+Traceback (most recent call last):
+  File "/Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/app.py", line 606, in predict
+    return jsonify({
+           ~~~~~~~^^
+        "scan_id": scan_id,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<9 lines>...
+        "analysis_completed": True
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    }), 200
+    ^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1167, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1171, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1226, in _execute_mock_call
+    raise effect
+Exception: Response formatting crash
+Scan 3a3b49760db54ed0bfaa152fedff0729 is completed or promoted; skipping error cleanup.
+[2026-09-24 22:55:34] [ERROR] Exception on /predict [POST]
+Traceback (most recent call last):
+  File "/Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/venv/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/venv/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/venv/lib/python3.13/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/app.py", line 692, in predict
+    return jsonify({
+           ~~~~~~~^^
+        "error": "Internal server error",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "message": "An unexpected error occurred during prediction."
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    }), 500
+    ^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1167, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1171, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1226, in _execute_mock_call
+    raise effect
+  File "/Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/app.py", line 606, in predict
+    return jsonify({
+           ~~~~~~~^^
+        "scan_id": scan_id,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<9 lines>...
+        "analysis_completed": True
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    }), 200
+    ^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1167, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1171, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1226, in _execute_mock_call
+    raise effect
+Exception: Response formatting crash
+{"request_id": "07f906f0c71b43679b5916ced927d29a", "route": "/predict", "method": "POST", "status": 500, "total_duration_ms": 129.69, "gcs_upload_duration_ms": 0.02, "signed_url_generation_duration_ms": 0.01, "pending_scan_save_duration_ms": 0.03}
+ok
+test_predict_exception_cleans_up_gcs_image (test_consent.TestConsentLogic.test_predict_exception_cleans_up_gcs_image) ... /Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/app.py:325: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  now_utc = datetime.utcnow().isoformat()
+GCS upload SUCCESS
+Traceback (most recent call last):
+  File "/Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/app.py", line 451, in predict
+    has_face, face_count, face_msg = detect_face(io.BytesIO(image_bytes))
+                                     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1167, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1171, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1226, in _execute_mock_call
+    raise effect
+RuntimeError: OpenCV crash
+/Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/app.py:187: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  now_iso = datetime.utcnow().isoformat()
+{"request_id": "f2adb4a9fd304edabe2a9b395b3c908a", "route": "/predict", "method": "POST", "status": 500, "total_duration_ms": 1.58, "gcs_upload_duration_ms": 0.02, "signed_url_generation_duration_ms": 0.0}
+ok
+test_predict_guest_requires_disclosure_acknowledgement (test_consent.TestConsentLogic.test_predict_guest_requires_disclosure_acknowledgement) ... {"request_id": "df137cd13f2945c6b8fd1403444822c2", "route": "/predict", "method": "POST", "status": 400, "total_duration_ms": 0.41}
+ok
+test_predict_invalid_bearer_token_not_treated_as_guest (test_consent.TestConsentLogic.test_predict_invalid_bearer_token_not_treated_as_guest) ... {"request_id": "08650ce3c29246ef81be338e82d846d7", "route": "/predict", "method": "POST", "status": 401, "total_duration_ms": 0.1}
+ok
+test_predict_low_confidence_cleans_up_gcs_image (test_consent.TestConsentLogic.test_predict_low_confidence_cleans_up_gcs_image) ... GCS upload SUCCESS
+{"request_id": "c2372a6c47294c019323802d4d2473c6", "route": "/predict", "method": "POST", "status": 200, "total_duration_ms": 2.97, "gcs_upload_duration_ms": 0.02, "signed_url_generation_duration_ms": 0.0, "model_inference_duration_ms": 1.25}
+ok
+test_predict_low_confidence_immediate_delete_returns_false_persists_deleting_status (test_consent.TestConsentLogic.test_predict_low_confidence_immediate_delete_returns_false_persists_deleting_status)
+When immediate delete returns False, tracking record is retained with status='deleting' and needs_cleanup=True. ... GCS upload SUCCESS
+{"request_id": "0e37f878b4524a69b817410d965421e2", "route": "/predict", "method": "POST", "status": 200, "total_duration_ms": 2.05, "gcs_upload_duration_ms": 0.02, "signed_url_generation_duration_ms": 0.0, "model_inference_duration_ms": 0.89}
+ok
+test_predict_upload_failure_persists_durable_tracking (test_consent.TestConsentLogic.test_predict_upload_failure_persists_durable_tracking)
+Process/upload failure preserves durable cleanup tracking record with needs_cleanup. ... GCS upload failed or timed out: Storage connection timed out
+{"request_id": "31d236a3accd4750878d6f9619dd8d04", "route": "/predict", "method": "POST", "status": 500, "total_duration_ms": 0.56}
+ok
+test_signup_incomplete_consent (test_consent.TestConsentLogic.test_signup_incomplete_consent) ... {"request_id": "0823358c469646739be0720c48ce2b92", "route": "/api/auth/signup", "method": "POST", "status": 400, "total_duration_ms": 0.1}
+ok
+test_signup_missing_consent (test_consent.TestConsentLogic.test_signup_missing_consent) ... {"request_id": "e6e9e7bf258449f793d416bcf9c7b460", "route": "/api/auth/signup", "method": "POST", "status": 400, "total_duration_ms": 0.08}
+ok
+test_signup_with_valid_consent_stores_utc_timestamp (test_consent.TestConsentLogic.test_signup_with_valid_consent_stores_utc_timestamp) ... /Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/routes/auth.py:92: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  server_utc_timestamp = datetime.datetime.utcnow().isoformat()
+/Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/routes/auth.py:136: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  'exp': datetime.datetime.utcnow() + datetime.timedelta(days=7)
+{"request_id": "abbbfa08d094434687cee9e6ee2a67c8", "route": "/api/auth/signup", "method": "POST", "status": 201, "total_duration_ms": 242.92, "firestore_duration_ms": 0.21}
+ok
+test_emulator_coordinated_concurrent_promotion_vs_cleanup (test_emulator_integration.TestFirestoreEmulatorIntegration.test_emulator_coordinated_concurrent_promotion_vs_cleanup)
+Coordinated concurrent transaction test against the live emulator: ... /Users/jazeelabduljabbar/Developer/AcneDetection-main/backend/venv/lib/python3.13/site-packages/google/cloud/firestore_v1/base_collection.py:317: UserWarning: Detected filter using positional arguments. Prefer using the 'filter' keyword argument instead.
+  return query.where(field_path, op_string, value)
+ok
+test_emulator_mutual_exclusion_cleanup_claim_rejects_promoted (test_emulator_integration.TestFirestoreEmulatorIntegration.test_emulator_mutual_exclusion_cleanup_claim_rejects_promoted)
+Cleanup cannot claim a document that is already promoted. ... ok
+test_emulator_mutual_exclusion_promotion_rejects_deleting_state (test_emulator_integration.TestFirestoreEmulatorIntegration.test_emulator_mutual_exclusion_promotion_rejects_deleting_state)
+Production promote_scan_tx strictly rejects scans with status='deleting'. ... ok
+test_emulator_single_doc_transactional_read_contract (test_emulator_integration.TestFirestoreEmulatorIntegration.test_emulator_single_doc_transactional_read_contract)
+Verify ref.get(transaction=tx) on genuine emulator returns DocumentSnapshot directly. ... ok
+test_completion_commits_remotely_raises_timeout_verification_fails_fails_closed (test_fail_closed_and_late_upload.TestFailClosedAndLateUpload.test_completion_commits_remotely_raises_timeout_verification_fails_fails_closed)
+If completion write commits in Firestore remotely but times out locally, ... ok
+test_crashed_uploading_retains_durable_marker_across_multiple_cleanup_runs_and_worker_takeovers_until_blob_cleaned (test_fail_closed_and_late_upload.TestFailClosedAndLateUpload.test_crashed_uploading_retains_durable_marker_across_multiple_cleanup_runs_and_worker_takeovers_until_blob_cleaned)
+Regression test covering the complete lifecycle of a crashed 'uploading' record: ... [2026-09-24 22:55:39] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:39.344865+00:00)
+[2026-09-24 22:55:39] [INFO] Targeting claimed scan scan_crashed_multi_worker_lifecycle (claim_id: c718fd44-b045-463b-8a87-6454cadf49ac, image: users/user_fail_closed/scans/scan_crashed_multi_worker_lifecycle/original.jpg)
+[2026-09-24 22:55:39] [INFO] GCS blob not found (404): users/user_fail_closed/scans/scan_crashed_multi_worker_lifecycle/original.jpg
+[2026-09-24 22:55:39] [WARNING] Scan scan_crashed_multi_worker_lifecycle represents an unresolved upload (prior_status=uploading, unresolved_upload=True, upload_failed=None). GCS returned 404, but late upload may still arrive. Preserving durable recovery record with status='deleting'.
+[2026-09-24 22:55:39] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:39] [INFO]   evaluated: 1
+[2026-09-24 22:55:39] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:39] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:39] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:39] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:39] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:39] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:39] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:39] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:39] [INFO]   gcs_deleted: 0
+[2026-09-24 22:55:39] [INFO]   gcs_already_missing: 1
+[2026-09-24 22:55:39] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:39] [INFO]   firestore_deleted: 0
+[2026-09-24 22:55:39] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:39] [INFO]   dry_run: False
+[2026-09-24 22:55:39] [INFO]   retention_hours: 24
+[2026-09-24 22:55:39] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:39.345679+00:00)
+[2026-09-24 22:55:39] [INFO] Targeting claimed scan scan_crashed_multi_worker_lifecycle (claim_id: 0f6bf9b7-e004-45b5-8534-a9935f7b601d, image: users/user_fail_closed/scans/scan_crashed_multi_worker_lifecycle/original.jpg)
+[2026-09-24 22:55:39] [INFO] GCS blob not found (404): users/user_fail_closed/scans/scan_crashed_multi_worker_lifecycle/original.jpg
+[2026-09-24 22:55:39] [WARNING] Scan scan_crashed_multi_worker_lifecycle represents an unresolved upload (prior_status=deleting, unresolved_upload=True, upload_failed=None). GCS returned 404, but late upload may still arrive. Preserving durable recovery record with status='deleting'.
+[2026-09-24 22:55:39] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:39] [INFO]   evaluated: 1
+[2026-09-24 22:55:39] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:39] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:39] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:39] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:39] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:39] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:39] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:39] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:39] [INFO]   gcs_deleted: 0
+[2026-09-24 22:55:39] [INFO]   gcs_already_missing: 1
+[2026-09-24 22:55:39] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:39] [INFO]   firestore_deleted: 0
+[2026-09-24 22:55:39] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:39] [INFO]   dry_run: False
+[2026-09-24 22:55:39] [INFO]   retention_hours: 24
+[2026-09-24 22:55:39] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:39.346062+00:00)
+[2026-09-24 22:55:39] [INFO] Targeting claimed scan scan_crashed_multi_worker_lifecycle (claim_id: 55ec6a24-2aa3-4263-8dd6-8272167c33fc, image: users/user_fail_closed/scans/scan_crashed_multi_worker_lifecycle/original.jpg)
+[2026-09-24 22:55:39] [INFO] GCS blob not found (404): users/user_fail_closed/scans/scan_crashed_multi_worker_lifecycle/original.jpg
+[2026-09-24 22:55:39] [WARNING] Scan scan_crashed_multi_worker_lifecycle represents an unresolved upload (prior_status=deleting, unresolved_upload=True, upload_failed=None). GCS returned 404, but late upload may still arrive. Preserving durable recovery record with status='deleting'.
+[2026-09-24 22:55:39] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:39] [INFO]   evaluated: 1
+[2026-09-24 22:55:39] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:39] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:39] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:39] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:39] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:39] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:39] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:39] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:39] [INFO]   gcs_deleted: 0
+[2026-09-24 22:55:39] [INFO]   gcs_already_missing: 1
+[2026-09-24 22:55:39] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:39] [INFO]   firestore_deleted: 0
+[2026-09-24 22:55:39] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:39] [INFO]   dry_run: False
+[2026-09-24 22:55:39] [INFO]   retention_hours: 24
+[2026-09-24 22:55:39] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:39.346429+00:00)
+[2026-09-24 22:55:39] [INFO] Targeting claimed scan scan_crashed_multi_worker_lifecycle (claim_id: 3b2c14c8-6455-4a9c-8e7f-61c07f3ffa39, image: users/user_fail_closed/scans/scan_crashed_multi_worker_lifecycle/original.jpg)
+[2026-09-24 22:55:39] [INFO] Deleted GCS blob: users/user_fail_closed/scans/scan_crashed_multi_worker_lifecycle/original.jpg
+[2026-09-24 22:55:39] [INFO] Finalized Firestore pending_scan doc deletion: scan_crashed_multi_worker_lifecycle
+[2026-09-24 22:55:39] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:39] [INFO]   evaluated: 1
+[2026-09-24 22:55:39] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:39] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:39] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:39] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:39] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:39] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:39] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:39] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:39] [INFO]   gcs_deleted: 1
+[2026-09-24 22:55:39] [INFO]   gcs_already_missing: 0
+[2026-09-24 22:55:39] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:39] [INFO]   firestore_deleted: 1
+[2026-09-24 22:55:39] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:39] [INFO]   dry_run: False
+[2026-09-24 22:55:39] [INFO]   retention_hours: 24
+ok
+test_crashed_uploading_state_retains_durable_recovery_record_on_404 (test_fail_closed_and_late_upload.TestFailClosedAndLateUpload.test_crashed_uploading_state_retains_durable_recovery_record_on_404)
+Invariant: If a worker or client process crashed before writing upload_failed=True, ... [2026-09-24 22:55:39] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:39.347229+00:00)
+[2026-09-24 22:55:39] [INFO] Targeting claimed scan scan_crashed_in_uploading (claim_id: 700b40b0-e2a1-497b-a080-b9f1463faa11, image: anonymous/scan_crashed_in_uploading/original.jpg)
+[2026-09-24 22:55:39] [INFO] GCS blob not found (404): anonymous/scan_crashed_in_uploading/original.jpg
+[2026-09-24 22:55:39] [WARNING] Scan scan_crashed_in_uploading represents an unresolved upload (prior_status=uploading, unresolved_upload=True, upload_failed=None). GCS returned 404, but late upload may still arrive. Preserving durable recovery record with status='deleting'.
+[2026-09-24 22:55:39] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:39] [INFO]   evaluated: 1
+[2026-09-24 22:55:39] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:39] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:39] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:39] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:39] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:39] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:39] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:39] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:39] [INFO]   gcs_deleted: 0
+[2026-09-24 22:55:39] [INFO]   gcs_already_missing: 1
+[2026-09-24 22:55:39] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:39] [INFO]   firestore_deleted: 0
+[2026-09-24 22:55:39] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:39] [INFO]   dry_run: False
+[2026-09-24 22:55:39] [INFO]   retention_hours: 24
+ok
+test_late_upload_race_background_cleanup_does_not_finalize_on_404_within_grace_period (test_fail_closed_and_late_upload.TestFailClosedAndLateUpload.test_late_upload_race_background_cleanup_does_not_finalize_on_404_within_grace_period)
+Race condition: ... [2026-09-24 22:55:39] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:39.348021+00:00)
+[2026-09-24 22:55:39] [INFO] Targeting claimed scan scan_late_upload_race (claim_id: a6b68135-d42e-4371-95ce-9080bc03c1c3, image: anonymous/scan_late_upload_race/original.jpg)
+[2026-09-24 22:55:39] [INFO] GCS blob not found (404): anonymous/scan_late_upload_race/original.jpg
+[2026-09-24 22:55:39] [WARNING] Scan scan_late_upload_race represents an unresolved upload (prior_status=deleting, unresolved_upload=True, upload_failed=True). GCS returned 404, but late upload may still arrive. Preserving durable recovery record with status='deleting'.
+[2026-09-24 22:55:39] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:39] [INFO]   evaluated: 1
+[2026-09-24 22:55:39] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:39] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:39] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:39] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:39] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:39] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:39] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:39] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:39] [INFO]   gcs_deleted: 0
+[2026-09-24 22:55:39] [INFO]   gcs_already_missing: 1
+[2026-09-24 22:55:39] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:39] [INFO]   firestore_deleted: 0
+[2026-09-24 22:55:39] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:39] [INFO]   dry_run: False
+[2026-09-24 22:55:39] [INFO]   retention_hours: 24
+[2026-09-24 22:55:39] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:39.348600+00:00)
+[2026-09-24 22:55:39] [INFO] Targeting claimed scan scan_late_upload_race (claim_id: 130b39c3-485c-4e55-a944-5028776a2d5e, image: anonymous/scan_late_upload_race/original.jpg)
+[2026-09-24 22:55:39] [INFO] Deleted GCS blob: anonymous/scan_late_upload_race/original.jpg
+[2026-09-24 22:55:39] [INFO] Finalized Firestore pending_scan doc deletion: scan_late_upload_race
+[2026-09-24 22:55:39] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:39] [INFO]   evaluated: 1
+[2026-09-24 22:55:39] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:39] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:39] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:39] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:39] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:39] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:39] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:39] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:39] [INFO]   gcs_deleted: 1
+[2026-09-24 22:55:39] [INFO]   gcs_already_missing: 0
+[2026-09-24 22:55:39] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:39] [INFO]   firestore_deleted: 1
+[2026-09-24 22:55:39] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:39] [INFO]   dry_run: False
+[2026-09-24 22:55:39] [INFO]   retention_hours: 24
+ok
+test_promotion_occurs_before_recovery_reads_image_remains_intact (test_fail_closed_and_late_upload.TestFailClosedAndLateUpload.test_promotion_occurs_before_recovery_reads_image_remains_intact)
+If concurrent promotion marks the scan as 'promoted' before error recovery reads, ... ok
+test_subsequent_verification_reads_fail_image_and_record_intact (test_fail_closed_and_late_upload.TestFailClosedAndLateUpload.test_subsequent_verification_reads_fail_image_and_record_intact)
+When verification reads fail with an exception, guarded error cleanup fails closed, ... Guarded error cleanup authorization failed for scan_read_failure: 503 Service Unavailable
+ok
+test_unresolved_upload_retains_durable_recovery_record_regardless_of_age_on_404 (test_fail_closed_and_late_upload.TestFailClosedAndLateUpload.test_unresolved_upload_retains_durable_recovery_record_regardless_of_age_on_404)
+Invariant: Without an enforced termination bound, 2 hours cannot guarantee upload termination. ... [2026-09-24 22:55:39] [INFO] Starting pending scan cleanup (dry_run=False, retention=24h, cutoff=2026-09-23T17:25:39.349851+00:00)
+[2026-09-24 22:55:39] [INFO] Targeting claimed scan scan_old_unresolved_upload (claim_id: 83e41b00-cade-40b6-b377-05437bef69a7, image: anonymous/scan_old_unresolved_upload/original.jpg)
+[2026-09-24 22:55:39] [INFO] GCS blob not found (404): anonymous/scan_old_unresolved_upload/original.jpg
+[2026-09-24 22:55:39] [WARNING] Scan scan_old_unresolved_upload represents an unresolved upload (prior_status=deleting, unresolved_upload=True, upload_failed=True). GCS returned 404, but late upload may still arrive. Preserving durable recovery record with status='deleting'.
+[2026-09-24 22:55:39] [INFO] Cleanup completed. Summary:
+[2026-09-24 22:55:39] [INFO]   evaluated: 1
+[2026-09-24 22:55:39] [INFO]   skipped_within_retention: 0
+[2026-09-24 22:55:39] [INFO]   skipped_invalid_created_at: 0
+[2026-09-24 22:55:39] [INFO]   skipped_mismatched_id: 0
+[2026-09-24 22:55:39] [INFO]   skipped_mismatched_path: 0
+[2026-09-24 22:55:39] [INFO]   skipped_promoted: 0
+[2026-09-24 22:55:39] [INFO]   skipped_already_claimed: 0
+[2026-09-24 22:55:39] [INFO]   skipped_in_history: 0
+[2026-09-24 22:55:39] [INFO]   skipped_unsafe_path: 0
+[2026-09-24 22:55:39] [INFO]   gcs_deleted: 0
+[2026-09-24 22:55:39] [INFO]   gcs_already_missing: 1
+[2026-09-24 22:55:39] [INFO]   gcs_failed: 0
+[2026-09-24 22:55:39] [INFO]   firestore_deleted: 0
+[2026-09-24 22:55:39] [INFO]   firestore_failed: 0
+[2026-09-24 22:55:39] [INFO]   dry_run: False
+[2026-09-24 22:55:39] [INFO]   retention_hours: 24
+ok
+test_emulator_config_rejects_non_loopback_host (test_models_config.TestModelsConfigurationAndSecurity.test_emulator_config_rejects_non_loopback_host)
+Emulator mode must reject remote or non-loopback addresses. ... ok
+test_emulator_config_rejects_production_project_id (test_models_config.TestModelsConfigurationAndSecurity.test_emulator_config_rejects_production_project_id)
+Emulator mode must reject production project IDs to prevent production contamination. ... ok
+test_emulator_config_uses_anonymous_credentials (test_models_config.TestModelsConfigurationAndSecurity.test_emulator_config_uses_anonymous_credentials)
+Emulator mode must construct the client using AnonymousCredentials and loopback. ... ok
+test_explicit_offline_test_isolation (test_models_config.TestModelsConfigurationAndSecurity.test_explicit_offline_test_isolation)
+When KLINIK_OFFLINE_TESTING=1 is explicitly set, an isolated test double is returned. ... ok
+test_production_init_failure_raises_and_never_activates_dummy (test_models_config.TestModelsConfigurationAndSecurity.test_production_init_failure_raises_and_never_activates_dummy)
+In production mode, Firestore initialization failure must raise RuntimeError and never fall back to dummy DB. ... ok
+test_claim_pending_scan_tx_with_real_sdk_objects (test_real_firestore_sdk.TestRealFirestoreSDKContract.test_claim_pending_scan_tx_with_real_sdk_objects)
+claim_pending_scan_tx succeeds using real DocumentReference and Transaction. ... ok
+test_record_deletion_failure_and_finalize_with_real_sdk (test_real_firestore_sdk.TestRealFirestoreSDKContract.test_record_deletion_failure_and_finalize_with_real_sdk)
+record_deletion_failure_tx and finalize_deletion_tx succeed with real SDK types. ... ok
+test_transition_pending_scan_status_with_real_sdk (test_real_firestore_sdk.TestRealFirestoreSDKContract.test_transition_pending_scan_status_with_real_sdk)
+transition_pending_scan_status succeeds using real Transaction and DocumentReference. ... ok
+test_tx_get_returns_generator_while_ref_get_returns_snapshot (test_real_firestore_sdk.TestRealFirestoreSDKContract.test_tx_get_returns_generator_while_ref_get_returns_snapshot)
+Document the return-type difference between tx.get(ref) and ref.get(transaction=tx). ... ok
+
+----------------------------------------------------------------------
+Ran 69 tests in 4.654s
+
+OK
+[+] Firestore emulator initialized (Project: demo-klinik-review, Database: klinikdb, Host: 127.0.0.1:8080).
+[!] KLINIK_OFFLINE_TESTING=1: Using isolated test double.
+[-] Fatal: Firestore initialization failed: Connection to GCP failed

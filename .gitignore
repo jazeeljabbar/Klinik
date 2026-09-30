@@ -3,29 +3,58 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 venv/
+.venv/
 .env
+.env*.local
+.pytest_cache/
+.keras/
+*.bak
+*.pid
 
 # Node
 node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.firebase/
+frontend/.chrome-profile/
 
-# Uploads
+# Uploads & local databases
 backend/uploads/*
 !backend/uploads/.gitkeep
+backend/data/
+*.db
+*.sqlite3
 
-# IDE
+# IDE & OS
 .vscode/
 .idea/
-
-# OS
 .DS_Store
 Thumbs.db
 
 # Logs
 *.log
 
-# Secrets
-client_secret_*.json
+# Secrets & Service Account Keys
+client_secret*.json
+firebase-credentials*.json
+*firebase*credentials*.json
+service-account*.json
+*.service-account.json
+backend/*klinik-ai-*.json
+*.pem
+*.key
 
-# Database
-*.db
-*.sqlite3
+# Local test scratch & packages
+*.zip
+mobile/
+LDL-master/
+*.pdf
+load_test*
+uat*
+test_cv.py
+frontend/capture*.cjs
+frontend/screenshot.js
+frontend/test_frontend.js
+screenshots/
+/tests/
+

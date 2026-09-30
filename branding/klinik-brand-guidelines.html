@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KliniK — Brand Guidelines</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy-deep: #0D1B3E;
+    --navy: #1B2559;
+    --navy-light: #2E3A6E;
+    --coral: #E8634A;
+    --coral-light: #F4A89A;
+    --coral-bg: #FFF0ED;
+    --mint: #22C68E;
+    --mint-light: #E6F9F1;
+    --surface: #F7F8FC;
+    --white: #FFFFFF;
+    --gray-100: #F1F3F9;
+    --gray-200: #E2E6F0;
+    --gray-400: #9BA3BE;
+    --gray-600: #6B7394;
+    --gray-800: #3A4063;
+    --text: #1A1D2E;
+  }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Cover */
+  .cover {
+    background: var(--navy-deep);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,99,74,0.08) 0%, transparent 70%);
+  }
+  .cover-logo {
+    font-size: 96px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -4px;
+    margin-bottom: 16px;
+  }
+  .cover-logo span { font-weight: 300; }
+  .cover-logo .dot {
+    display: inline-block;
+    width: 14px; height: 14px;
+    background: var(--coral);
+    border-radius: 50%;
+    vertical-align: super;
+    margin: 0 -4px;
+    position: relative;
+    top: -20px;
+    box-shadow: 0 0 0 4px rgba(232,99,74,0.3);
+  }
+  .cover-sub {
+    font-size: 14px;
+    letter-spacing: 8px;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    margin-bottom: 60px;
+  }
+  .cover-title {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--coral-light);
+    letter-spacing: 1px;
+  }
+  .cover-version {
+    position: absolute;
+    bottom: 40px;
+    font-size: 12px;
+    color: var(--gray-400);
+    letter-spacing: 2px;
+  }
+
+  /* Sections */
+  .section {
+    padding: 80px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    page-break-inside: avoid;
+  }
+  .section-dark {
+    background: var(--navy-deep);
+    color: var(--white);
+    max-width: none;
+    padding: 80px 60px;
+  }
+  .section-dark .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-surface {
+    background: var(--surface);
+    max-width: none;
+    padding: 80px 60px;
+  }
+  .section-surface .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 12px;
+  }
+  .section-heading {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+    color: var(--navy-deep);
+  }
+  .section-dark .section-heading { color: var(--white); }
+  .section-desc {
+    font-size: 16px;
+    color: var(--gray-600);
+    max-width: 600px;
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+  .section-dark .section-desc { color: var(--gray-400); }
+
+  /* Color Palette */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .color-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+  }
+  .color-swatch {
+    height: 120px;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+  }
+  .color-swatch span {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+    font-family: 'Inter', monospace;
+  }
+  .color-info {
+    padding: 16px;
+    background: var(--white);
+  }
+  .color-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .color-use {
+    font-size: 12px;
+    color: var(--gray-600);
+    line-height: 1.5;
+  }
+
+  /* Typography */
+  .type-specimen {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .type-specimen:last-child { border-bottom: none; }
+  .type-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 16px;
+  }
+  .type-display {
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--navy-deep);
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+  }
+  .type-body {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--gray-800);
+    line-height: 1.7;
+  }
+  .type-meta {
+    font-size: 12px;
+    color: var(--gray-400);
+    margin-top: 12px;
+    font-family: monospace;
+  }
+
+  /* Logo Rules */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 40px;
+  }
+  .logo-variant {
+    border-radius: 16px;
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+  }
+  .logo-variant-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 24px;
+    color: var(--gray-400);
+  }
+  .logo-text {
+    font-size: 48px;
+    letter-spacing: -2px;
+  }
+  .logo-text-bold { font-weight: 700; }
+  .logo-text-light { font-weight: 300; }
+
+  /* Component Examples */
+  .component-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .component-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 32px;
+    background: var(--white);
+  }
+  .component-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 20px;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--navy);
+    color: var(--white);
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    margin-right: 12px;
+    margin-bottom: 12px;
+  }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    color: var(--navy);
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    border: 2px solid var(--navy);
+    cursor: pointer;
+    font-family: inherit;
+    margin-right: 12px;
+    margin-bottom: 12px;
+  }
+  .btn-accent {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--coral);
+    color: var(--white);
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    margin-right: 12px;
+    margin-bottom: 12px;
+  }
+
+  /* Severity scale */
+  .severity-bar {
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--mint) 0%, #FFC940 40%, var(--coral) 70%, #C02B2B 100%);
+    margin: 20px 0 8px;
+  }
+  .severity-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--gray-600);
+  }
+
+  /* Spacing guide */
+  .spacing-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .spacing-block {
+    background: var(--coral-bg);
+    border: 1px dashed var(--coral);
+    border-radius: 4px;
+  }
+  .spacing-label {
+    font-size: 13px;
+    color: var(--gray-600);
+    font-family: monospace;
+  }
+
+  /* Do/Don't */
+  .do-dont-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .do-card, .dont-card {
+    border-radius: 16px;
+    padding: 24px;
+    min-height: 160px;
+  }
+  .do-card {
+    background: var(--mint-light);
+    border: 2px solid var(--mint);
+  }
+  .dont-card {
+    background: var(--coral-bg);
+    border: 2px solid var(--coral);
+  }
+  .do-card-label, .dont-card-label {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .do-card-label { color: #0E8F5E; }
+  .dont-card-label { color: var(--coral); }
+  .do-card p, .dont-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--gray-800);
+  }
+
+  /* Production checklist */
+  .checklist {
+    list-style: none;
+    padding: 0;
+  }
+  .checklist li {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--gray-200);
+    font-size: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    line-height: 1.5;
+  }
+  .checklist li::before {
+    content: '→';
+    color: var(--coral);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Icon element mockup */
+  .icon-crosshair {
+    display: inline-block;
+    width: 32px; height: 32px;
+    position: relative;
+  }
+  .icon-crosshair::before {
+    content: '';
+    position: absolute;
+    width: 12px; height: 12px;
+    background: var(--coral);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .icon-crosshair::after {
+    content: '';
+    position: absolute;
+    width: 20px; height: 20px;
+    border: 2px solid var(--coral);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Nav mockup */
+  .nav-mockup {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+    margin-bottom: 20px;
+  }
+  .nav-brand {
+    font-size: 22px;
+    letter-spacing: -1px;
+    color: var(--navy);
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    font-size: 14px;
+    color: var(--gray-600);
+    font-weight: 500;
+  }
+  .nav-links span.active {
+    color: var(--navy);
+    padding: 6px 16px;
+    background: var(--surface);
+    border-radius: 8px;
+  }
+
+  /* Card mockup */
+  .result-card-mockup {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 32px;
+  }
+  .result-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  .result-card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--navy-deep);
+  }
+  .result-card-badge {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: #FFF3E0;
+    color: #C67600;
+  }
+  .result-metric {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .metric-item {
+    flex: 1;
+    padding: 16px;
+    background: var(--surface);
+    border-radius: 12px;
+    text-align: center;
+  }
+  .metric-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .metric-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-top: 4px;
+  }
+
+  @media print {
+    .section { page-break-inside: avoid; }
+    .cover { page-break-after: always; }
+  }
+  @media (max-width: 768px) {
+    .palette-grid, .logo-grid, .component-grid, .do-dont-grid {
+      grid-template-columns: 1fr;
+    }
+    .section { padding: 48px 24px; }
+    .cover { padding: 40px 24px; }
+    .cover-logo { font-size: 56px; }
+    .section-heading { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-logo">
+    K<span>lini</span>K
+  </div>
+  <div class="cover-sub">Brand Guidelines</div>
+  <div class="cover-title">Version 1.0 — June 2026</div>
+  <div class="cover-version">PREPARED FOR ANTIGRAVITY · CONFIDENTIAL</div>
+</div>
+
+<!-- 01 BRAND OVERVIEW -->
+<div class="section">
+  <div class="section-label">01 · Brand overview</div>
+  <h2 class="section-heading">Clinical precision.<br>Human warmth.</h2>
+  <p class="section-desc">
+    KliniK is an AI-powered acne analysis platform by HOPELABSAI Solution Private Limited. The brand sits at the intersection of clinical authority and approachable care — users are vulnerable when sharing skin concerns, so every touchpoint must feel trustworthy yet never cold.
+  </p>
+  <p class="section-desc" style="margin-bottom: 0;">
+    The name's symmetrical K bookends evoke diagnostic precision, while the lowercase interior ("lini") softens the clinical feel. The coral crosshair on the first "i" is the brand's signature element — a diagnostic motif that doubles as the app icon and favicon.
+  </p>
+</div>
+
+<!-- 02 LOGO -->
+<div class="section-dark">
+  <div class="section-inner">
+    <div class="section-label">02 · Logo system</div>
+    <h2 class="section-heading">Wordmark & variants</h2>
+    <p class="section-desc">
+      The primary logo uses Inter Bold for the K bookends and Inter Light for the interior. The crosshair element is always present on the first "i" — it is the brand's most recognizable element.
+    </p>
+
+    <div class="logo-grid">
+      <div class="logo-variant" style="background: #FFFFFF;">
+        <div class="logo-text" style="color: var(--navy-deep);">
+          <span class="logo-text-bold">K</span><span class="logo-text-light">lini</span><span class="logo-text-bold">K</span>
+        </div>
+        <div class="logo-variant-label">On light backgrounds</div>
+      </div>
+      <div class="logo-variant" style="background: var(--navy-deep);">
+        <div class="logo-text" style="color: #FFFFFF;">
+          <span class="logo-text-bold">K</span><span class="logo-text-light">lini</span><span class="logo-text-bold">K</span>
+        </div>
+        <div class="logo-variant-label" style="color: var(--gray-400);">On dark backgrounds</div>
+      </div>
+      <div class="logo-variant" style="background: var(--surface);">
+        <div style="width: 64px; height: 64px; background: var(--navy); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: white; font-size: 32px; font-weight: 700; letter-spacing: -1px;">K</span>
+        </div>
+        <div class="logo-variant-label">App icon</div>
+      </div>
+      <div class="logo-variant" style="background: var(--surface);">
+        <div style="width: 32px; height: 32px; position: relative; display: flex; align-items: center; justify-content: center;">
+          <div style="width: 10px; height: 10px; background: var(--coral); border-radius: 50%;"></div>
+          <div style="width: 18px; height: 18px; border: 2px solid var(--coral); border-radius: 50%; position: absolute;"></div>
+          <div style="width: 28px; height: 2px; background: var(--coral); position: absolute;"></div>
+          <div style="width: 2px; height: 28px; background: var(--coral); position: absolute;"></div>
+        </div>
+        <div class="logo-variant-label">Favicon / icon mark</div>
+      </div>
+    </div>
+
+    <div style="padding: 24px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+      <p style="font-size: 14px; color: var(--gray-400); line-height: 1.7;">
+        <strong style="color: var(--coral-light);">Clear space:</strong> Maintain a minimum clear space around the logo equal to the cap height of the "K" character on all sides. Never place the logo closer than this distance to any edge, text, or competing visual element.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- 03 COLOR PALETTE -->
+<div class="section">
+  <div class="section-label">03 · Color palette</div>
+  <h2 class="section-heading">Diagnostic clarity</h2>
+  <p class="section-desc">
+    The palette anchors on deep indigo navy for authority and trust, with a warm coral accent that references skin tones and creates a diagnostic energy. Mint green is reserved for positive/success states.
+  </p>
+
+  <div class="palette-grid">
+    <div class="color-card">
+      <div class="color-swatch" style="background: #0D1B3E;"><span>#0D1B3E</span></div>
+      <div class="color-info">
+        <div class="color-name">Navy Deep</div>
+        <div class="color-use">Backgrounds, hero sections, footer. The anchor color — used when you want authority and weight.</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #1B2559;"><span>#1B2559</span></div>
+      <div class="color-info">
+        <div class="color-name">Navy Primary</div>
+        <div class="color-use">Primary text color, buttons, navigation active states, headings. The workhorse.</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #2E3A6E;"><span>#2E3A6E</span></div>
+      <div class="color-info">
+        <div class="color-name">Navy Light</div>
+        <div class="color-use">Hover states, secondary text on dark backgrounds, subtle borders on dark surfaces.</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #E8634A;"><span>#E8634A</span></div>
+      <div class="color-info">
+        <div class="color-name">Coral</div>
+        <div class="color-use">Primary accent — CTAs, crosshair icon, active analysis indicators, severity warnings. Use sparingly for maximum impact.</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #F4A89A;"><span>#F4A89A</span></div>
+      <div class="color-info">
+        <div class="color-name">Coral Light</div>
+        <div class="color-use">Soft backgrounds, hover states on coral elements, severity meter warm zone, upload zone border.</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #22C68E; color: white;"><span>#22C68E</span></div>
+      <div class="color-info">
+        <div class="color-name">Mint</div>
+        <div class="color-use">Success states, "Mild" severity indicator, positive analysis results, confidence badges.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px; color: var(--navy-deep);">Neutral scale</h3>
+  <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+    <div style="flex: 1; height: 48px; background: #F7F8FC; border-radius: 8px; border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--gray-600);">#F7F8FC</div>
+    <div style="flex: 1; height: 48px; background: #F1F3F9; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--gray-600);">#F1F3F9</div>
+    <div style="flex: 1; height: 48px; background: #E2E6F0; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--gray-600);">#E2E6F0</div>
+    <div style="flex: 1; height: 48px; background: #9BA3BE; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: white;">#9BA3BE</div>
+    <div style="flex: 1; height: 48px; background: #6B7394; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: white;">#6B7394</div>
+    <div style="flex: 1; height: 48px; background: #3A4063; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: white;">#3A4063</div>
+    <div style="flex: 1; height: 48px; background: #1A1D2E; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: white;">#1A1D2E</div>
+  </div>
+</div>
+
+<!-- 04 TYPOGRAPHY -->
+<div class="section-surface">
+  <div class="section-inner">
+    <div class="section-label">04 · Typography</div>
+    <h2 class="section-heading">Inter — the clinical standard</h2>
+    <p class="section-desc">
+      Inter provides the geometric clarity needed for a medical-adjacent tool while maintaining excellent readability at small sizes — critical for data displays, confidence percentages, and diagnostic text.
+    </p>
+
+    <div class="type-specimen">
+      <div class="type-label">Display · Headlines</div>
+      <div class="type-display">Skin analysis, simplified.</div>
+      <div class="type-meta">Inter Bold (700) · 36–56px · Letter-spacing: -1px to -2px · Navy Deep</div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-label">Body · Descriptions</div>
+      <div class="type-body">Upload a facial image and receive instant acne severity analysis powered by advanced AI technology. Our model classifies skin conditions with clinical-grade accuracy.</div>
+      <div class="type-meta">Inter Regular (400) · 16–18px · Line-height: 1.7 · Gray 800</div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-label">Data · Labels · Captions</div>
+      <div style="font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gray-400);">PREDICTED CLASS · CONFIDENCE SCORE · SEVERITY LEVEL</div>
+      <div class="type-meta">Inter SemiBold (600) · 11–12px · Letter-spacing: 3px · Uppercase · Gray 400</div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-label">Metrics · Numbers</div>
+      <div style="font-size: 48px; font-weight: 700; color: var(--navy);">91.08<span style="font-size: 24px; color: var(--gray-400);">%</span></div>
+      <div class="type-meta">Inter Bold (700) · 32–48px · Navy Primary · Percentage suffix in Gray 400 at half size</div>
+    </div>
+  </div>
+</div>
+
+<!-- 05 UI COMPONENTS -->
+<div class="section">
+  <div class="section-label">05 · UI components</div>
+  <h2 class="section-heading">Component library</h2>
+  <p class="section-desc">
+    Core interface elements designed for clarity, accessibility, and a polished production feel. Every component uses the brand palette and type scale.
+  </p>
+
+  <div class="component-grid">
+    <div class="component-card">
+      <div class="component-label">Buttons</div>
+      <button class="btn-primary">⚡ Analyze skin</button>
+      <button class="btn-secondary">Upload image</button>
+      <button class="btn-accent">Get started</button>
+      <p style="font-size: 12px; color: var(--gray-400); margin-top: 16px;">
+        Border-radius: 12px · Padding: 14px 28px · Font: Inter SemiBold 15px
+      </p>
+    </div>
+
+    <div class="component-card">
+      <div class="component-label">Severity meter</div>
+      <div class="severity-bar"></div>
+      <div class="severity-labels">
+        <span style="color: var(--mint);">Mild</span>
+        <span style="color: #D4A017;">Moderate</span>
+        <span style="color: var(--coral);">Severe</span>
+        <span style="color: #C02B2B;">Very Severe</span>
+      </div>
+      <p style="font-size: 12px; color: var(--gray-400); margin-top: 16px;">
+        Height: 8px · Border-radius: 4px · 4-stop gradient using brand colors
+      </p>
+    </div>
+
+    <div class="component-card">
+      <div class="component-label">Navigation</div>
+      <div class="nav-mockup">
+        <div class="nav-brand"><span style="font-weight: 700;">K</span><span style="font-weight: 300;">lini</span><span style="font-weight: 700;">K</span></div>
+        <div class="nav-links">
+          <span class="active">Home</span>
+          <span>About</span>
+          <span>Contact</span>
+        </div>
+      </div>
+      <p style="font-size: 12px; color: var(--gray-400);">
+        Active link: Navy on Surface pill · Inactive: Gray 600 · Logo: 22px wordmark
+      </p>
+    </div>
+
+    <div class="component-card">
+      <div class="component-label">Result card</div>
+      <div class="result-card-mockup">
+        <div class="result-card-header">
+          <div class="result-card-title">Analysis results</div>
+          <div class="result-card-badge">⚠ Moderate</div>
+        </div>
+        <div class="result-metric">
+          <div class="metric-item">
+            <div class="metric-value" style="color: var(--coral);">Moderate</div>
+            <div class="metric-label">Predicted class</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value">91.08<span style="font-size: 14px; color: var(--gray-400);">%</span></div>
+            <div class="metric-label">Confidence</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 06 TONE & VOICE -->
+<div class="section-dark">
+  <div class="section-inner">
+    <div class="section-label">06 · Tone & voice</div>
+    <h2 class="section-heading">Empathetic authority</h2>
+    <p class="section-desc">
+      Users sharing skin images are in a vulnerable state. The tone must balance clinical credibility with genuine care. Never alarmist, never dismissive.
+    </p>
+
+    <div class="do-dont-grid">
+      <div class="do-card">
+        <div class="do-card-label">✓ Do</div>
+        <p>"Moderate acne detected. Multiple blemishes present that may benefit from a targeted treatment approach."</p>
+        <p style="margin-top: 12px;">"Your analysis is ready — here's what we found."</p>
+        <p style="margin-top: 12px;">"AI-powered skin condition assessment"</p>
+      </div>
+      <div class="dont-card">
+        <div class="dont-card-label">✗ Don't</div>
+        <p>"WARNING: Severe acne problem detected! Seek treatment immediately!"</p>
+        <p style="margin-top: 12px;">"Bad news — your skin has issues."</p>
+        <p style="margin-top: 12px;">"Our AI diagnoses your skin disease"</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px; padding: 24px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+      <p style="font-size: 14px; color: var(--gray-400); line-height: 1.7;">
+        <strong style="color: var(--coral-light);">Medical disclaimer:</strong> Always present the medical disclaimer prominently. Use language like "educational purposes" and "AI-powered assessment" — never "diagnosis" or "medical advice." The disclaimer should appear on every results page and in the footer.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- 07 PRODUCTION READINESS -->
+<div class="section">
+  <div class="section-label">07 · Production readiness checklist</div>
+  <h2 class="section-heading">From prototype to production</h2>
+  <p class="section-desc">
+    Key changes from the current "SKIN AI" prototype to make KliniK feel production-ready.
+  </p>
+
+  <ul class="checklist">
+    <li><strong>Replace the stock hero image</strong> with a custom illustration or a more abstract, privacy-respecting visual. The current photo of a person holding a phone feels generic — consider an abstract skin-texture pattern or a stylized diagnostic scan animation instead.</li>
+    <li><strong>Add a loading/analysis state</strong> with a branded animation. The crosshair motif spinning or pulsing over a blurred version of the uploaded image gives the user confidence something is happening.</li>
+    <li><strong>Implement proper image upload UX</strong> — show upload progress, file validation feedback, and a clear preview with crop/rotate options before analysis. The current drag-and-drop zone needs tighter visual polish.</li>
+    <li><strong>Add smooth page transitions</strong> between upload → analyzing → results. A slide or fade transition keeps the experience feeling intentional rather than abrupt.</li>
+    <li><strong>Design the recommendation section properly</strong> — the current yellow sidebar with heart icon feels disconnected from the analysis. Integrate it as a card within the results flow with clear visual hierarchy.</li>
+    <li><strong>Build a proper onboarding flow</strong> for first-time users explaining what the tool does, how data is used, and setting expectations about accuracy limitations.</li>
+    <li><strong>Add a history/dashboard view</strong> for logged-in users to track skin progress over time — this is the feature that turns a one-time tool into a retention product.</li>
+    <li><strong>Ensure WCAG 2.1 AA compliance</strong> — the current orange-on-white severity labels likely fail contrast requirements. Use the navy/coral palette which has been chosen for accessibility.</li>
+    <li><strong>Add proper error states</strong> — what happens when the image is too blurry, not a face, or the API fails? Each state needs a designed screen with clear next steps.</li>
+    <li><strong>Add social proof</strong> — total analyses performed, accuracy stats, or testimonials. A counter like "127,000+ skin analyses completed" builds trust immediately.</li>
+    <li><strong>SSL certificate, custom domain, and proper meta tags</strong> with OpenGraph images using the KliniK branding for social sharing.</li>
+    <li><strong>Add a privacy policy page</strong> explaining how uploaded images are processed, stored, and (if applicable) used for model improvement. This is critical for user trust in a health-adjacent product.</li>
+  </ul>
+</div>
+
+<!-- 08 SPACING & LAYOUT -->
+<div class="section-surface">
+  <div class="section-inner">
+    <div class="section-label">08 · Spacing & layout</div>
+    <h2 class="section-heading">Spatial rhythm</h2>
+    <p class="section-desc">
+      Use an 8px grid system throughout. Key spacing values:
+    </p>
+
+    <div class="spacing-row">
+      <div class="spacing-block" style="width: 8px; height: 8px;"></div>
+      <div class="spacing-label">8px — tight (icon padding, inline gaps)</div>
+    </div>
+    <div class="spacing-row">
+      <div class="spacing-block" style="width: 16px; height: 16px;"></div>
+      <div class="spacing-label">16px — compact (card padding, between related items)</div>
+    </div>
+    <div class="spacing-row">
+      <div class="spacing-block" style="width: 24px; height: 24px;"></div>
+      <div class="spacing-label">24px — default (section gaps, card margins)</div>
+    </div>
+    <div class="spacing-row">
+      <div class="spacing-block" style="width: 32px; height: 32px;"></div>
+      <div class="spacing-label">32px — comfortable (between components)</div>
+    </div>
+    <div class="spacing-row">
+      <div class="spacing-block" style="width: 48px; height: 48px;"></div>
+      <div class="spacing-label">48px — generous (between major sections)</div>
+    </div>
+    <div class="spacing-row">
+      <div class="spacing-block" style="width: 80px; height: 32px;"></div>
+      <div class="spacing-label">80px — dramatic (page section padding)</div>
+    </div>
+
+    <div style="margin-top: 40px; padding: 24px; background: var(--white); border-radius: 12px; border: 1px solid var(--gray-200);">
+      <p style="font-size: 14px; color: var(--gray-600); line-height: 1.7;">
+        <strong style="color: var(--navy);">Border radius system:</strong>
+        4px for small elements (badges, tags) · 8px for inputs and small buttons · 12px for buttons and cards · 16px for modal/panel containers · 20px for hero sections and large containers. Never mix rounded and sharp corners within the same component group.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="background: var(--navy-deep); padding: 60px; text-align: center;">
+  <div style="font-size: 36px; letter-spacing: -2px; color: white; margin-bottom: 8px;">
+    <span style="font-weight: 700;">K</span><span style="font-weight: 300;">lini</span><span style="font-weight: 700;">K</span>
+  </div>
+  <p style="font-size: 13px; color: var(--gray-400); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 32px;">Brand Guidelines v1.0</p>
+  <p style="font-size: 12px; color: var(--gray-600);">© 2026 HOPELABSAI Solution Private Limited · Prepared for Antigravity</p>
+</div>
+
+</body>
+</html>

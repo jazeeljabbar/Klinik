@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FiTrash2, FiZap, FiInfo } from 'react-icons/fi';
-import { HiOutlinePhotograph } from 'react-icons/hi';
+import { Trash2, Zap, Info, Image as ImageIcon } from 'lucide-react';
 
 export default function ImagePreview({ file, previewUrl, onAnalyze, onRemove, isAnalyzing }) {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -31,7 +30,6 @@ export default function ImagePreview({ file, previewUrl, onAnalyze, onRemove, is
     >
       <div className="container" style={{ maxWidth: '700px' }}>
         <div className="glass-strong" style={{
-          borderRadius: '20px',
           overflow: 'hidden',
         }}>
           {/* Image Display */}
@@ -43,6 +41,7 @@ export default function ImagePreview({ file, previewUrl, onAnalyze, onRemove, is
             justifyContent: 'center',
             maxHeight: '400px',
             overflow: 'hidden',
+            borderBottom: '1px solid rgba(13,27,62,0.05)'
           }}>
             <img
               src={previewUrl}
@@ -67,20 +66,19 @@ export default function ImagePreview({ file, previewUrl, onAnalyze, onRemove, is
                 width: '36px',
                 height: '36px',
                 borderRadius: '50%',
-                background: 'rgba(239, 68, 68, 0.9)',
-                color: 'white',
-                border: 'none',
+                background: 'rgba(255, 255, 255, 0.9)',
+                color: 'var(--color-navy-deep)',
+                border: '1px solid var(--color-gray-200)',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontSize: '1rem',
                 backdropFilter: 'blur(10px)',
-                boxShadow: '0 2px 8px rgba(239, 68, 68, 0.3)',
+                boxShadow: '0 2px 8px rgba(13, 27, 62, 0.1)',
               }}
               aria-label="Remove image"
             >
-              <FiTrash2 />
+              <Trash2 size={16} />
             </motion.button>
           </div>
 
@@ -92,11 +90,11 @@ export default function ImagePreview({ file, previewUrl, onAnalyze, onRemove, is
               alignItems: 'center',
               gap: '8px',
               marginBottom: '16px',
-              color: '#64748b',
-              fontSize: '0.875rem',
+              color: 'var(--color-gray-600)',
+              fontSize: '14px',
             }}>
-              <HiOutlinePhotograph style={{ fontSize: '1.1rem', color: '#2563eb' }} />
-              <span style={{ fontWeight: 600, color: '#0f172a', marginRight: '4px' }}>
+              <ImageIcon size={18} color="var(--color-navy-deep)" />
+              <span style={{ fontWeight: 600, color: 'var(--color-navy-deep)', marginRight: '4px' }}>
                 {file.name}
               </span>
             </div>
@@ -109,17 +107,17 @@ export default function ImagePreview({ file, previewUrl, onAnalyze, onRemove, is
               marginBottom: '20px',
             }}>
               <MetadataChip
-                icon={<FiInfo />}
+                icon={<Info size={14} />}
                 label="Dimensions"
                 value={`${dimensions.width} × ${dimensions.height} px`}
               />
               <MetadataChip
-                icon={<FiInfo />}
+                icon={<Info size={14} />}
                 label="Size"
                 value={formatFileSize(file.size)}
               />
               <MetadataChip
-                icon={<FiInfo />}
+                icon={<Info size={14} />}
                 label="Type"
                 value={file.type.split('/')[1]?.toUpperCase() || 'IMAGE'}
               />
@@ -129,25 +127,28 @@ export default function ImagePreview({ file, previewUrl, onAnalyze, onRemove, is
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="btn-primary"
               onClick={onAnalyze}
               disabled={isAnalyzing}
               style={{
                 width: '100%',
                 justifyContent: 'center',
-                fontSize: '1.05rem',
+                fontSize: '15px',
+                fontWeight: 600,
                 padding: '16px',
-                borderRadius: '14px',
-                background: isAnalyzing
-                  ? 'linear-gradient(135deg, #94a3b8, #64748b)'
-                  : 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #06b6d4 100%)',
-                backgroundSize: '200% 200%',
-                animation: isAnalyzing ? 'none' : 'gradient-flow 4s ease infinite',
+                borderRadius: '12px',
+                color: '#fff',
+                background: isAnalyzing ? 'var(--color-gray-400)' : 'var(--color-navy-deep)',
+                border: 'none',
+                cursor: isAnalyzing ? 'not-allowed' : 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                boxShadow: '0 4px 12px rgba(13, 27, 62, 0.15)',
               }}
               id="analyze-button"
             >
-              <FiZap style={{ fontSize: '1.2rem' }} />
-              {isAnalyzing ? 'Analyzing...' : 'Analyze Acne'}
+              <Zap size={18} />
+              {isAnalyzing ? 'Analyzing...' : 'Analyze Image'}
             </motion.button>
           </div>
         </div>
@@ -155,6 +156,7 @@ export default function ImagePreview({ file, previewUrl, onAnalyze, onRemove, is
     </motion.section>
   );
 }
+
 function MetadataChip({ icon, label, value }) {
   return (
     <div style={{
@@ -163,13 +165,13 @@ function MetadataChip({ icon, label, value }) {
       gap: '6px',
       padding: '6px 14px',
       borderRadius: '9999px',
-      background: '#f1f5f9',
-      fontSize: '0.8rem',
-      color: '#475569',
+      background: 'rgba(13,27,62,0.04)',
+      fontSize: '13px',
+      color: 'var(--color-gray-600)',
     }}>
-      <span style={{ color: '#2563eb', display: 'flex' }}>{icon}</span>
+      <span style={{ color: 'var(--color-navy-deep)', display: 'flex' }}>{icon}</span>
       <span style={{ fontWeight: 500 }}>{label}:</span>
-      <span style={{ fontWeight: 600, color: '#0f172a' }}>{value}</span>
+      <span style={{ fontWeight: 600, color: 'var(--color-navy-deep)' }}>{value}</span>
     </div>
   );
 }

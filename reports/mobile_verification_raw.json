@@ -1,0 +1,953 @@
+{
+  "timestamp": "2026-09-24T13:03:10.603Z",
+  "viewportsCount": 5,
+  "viewports": [
+    {
+      "name": "mobile_360_640",
+      "width": 360,
+      "height": 640,
+      "isMobile": true,
+      "isShort": true
+    },
+    {
+      "name": "mobile_360_800",
+      "width": 360,
+      "height": 800,
+      "isMobile": true,
+      "isShort": false
+    },
+    {
+      "name": "mobile_390_844",
+      "width": 390,
+      "height": 844,
+      "isMobile": true,
+      "isShort": false
+    },
+    {
+      "name": "tablet_768_1024",
+      "width": 768,
+      "height": 1024,
+      "isMobile": false,
+      "isShort": false
+    },
+    {
+      "name": "desktop_1440_900",
+      "width": 1440,
+      "height": 900,
+      "isMobile": false,
+      "isShort": false
+    }
+  ],
+  "totalOverflowChecks": 60,
+  "overflowPassed": 60,
+  "overflowFailed": 0,
+  "totalInteractionChecks": 23,
+  "interactionPassed": 23,
+  "interactionFailed": 0,
+  "overflowResults": [
+    {
+      "viewport": "mobile_360_640",
+      "routeKey": "homepage",
+      "routeLabel": "Public Homepage",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_640",
+      "routeKey": "login",
+      "routeLabel": "Login Page",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_640",
+      "routeKey": "forgot_password",
+      "routeLabel": "Forgot Password",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_640",
+      "routeKey": "terms",
+      "routeLabel": "Terms of Service",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_640",
+      "routeKey": "privacy",
+      "routeLabel": "Privacy Policy",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_640",
+      "routeKey": "guest_disclosure_modal",
+      "routeLabel": "Guest Disclosure Modal",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_640",
+      "routeKey": "dashboard",
+      "routeLabel": "Dashboard",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_640",
+      "routeKey": "scan_auth",
+      "routeLabel": "Scan (Auth)",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_640",
+      "routeKey": "skin_journey",
+      "routeLabel": "Skin Journey Comparison",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_640",
+      "routeKey": "check_ins",
+      "routeLabel": "Skin Check-Ins Gallery",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_640",
+      "routeKey": "profile",
+      "routeLabel": "Profile & Privacy",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_640",
+      "routeKey": "consent_modal_gate",
+      "routeLabel": "Consent Modal Gate",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_800",
+      "routeKey": "homepage",
+      "routeLabel": "Public Homepage",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_800",
+      "routeKey": "login",
+      "routeLabel": "Login Page",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_800",
+      "routeKey": "forgot_password",
+      "routeLabel": "Forgot Password",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_800",
+      "routeKey": "terms",
+      "routeLabel": "Terms of Service",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_800",
+      "routeKey": "privacy",
+      "routeLabel": "Privacy Policy",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_800",
+      "routeKey": "guest_disclosure_modal",
+      "routeLabel": "Guest Disclosure Modal",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_800",
+      "routeKey": "dashboard",
+      "routeLabel": "Dashboard",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_800",
+      "routeKey": "scan_auth",
+      "routeLabel": "Scan (Auth)",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_800",
+      "routeKey": "skin_journey",
+      "routeLabel": "Skin Journey Comparison",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_800",
+      "routeKey": "check_ins",
+      "routeLabel": "Skin Check-Ins Gallery",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_800",
+      "routeKey": "profile",
+      "routeLabel": "Profile & Privacy",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_360_800",
+      "routeKey": "consent_modal_gate",
+      "routeLabel": "Consent Modal Gate",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_390_844",
+      "routeKey": "homepage",
+      "routeLabel": "Public Homepage",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_390_844",
+      "routeKey": "login",
+      "routeLabel": "Login Page",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_390_844",
+      "routeKey": "forgot_password",
+      "routeLabel": "Forgot Password",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_390_844",
+      "routeKey": "terms",
+      "routeLabel": "Terms of Service",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_390_844",
+      "routeKey": "privacy",
+      "routeLabel": "Privacy Policy",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_390_844",
+      "routeKey": "guest_disclosure_modal",
+      "routeLabel": "Guest Disclosure Modal",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_390_844",
+      "routeKey": "dashboard",
+      "routeLabel": "Dashboard",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_390_844",
+      "routeKey": "scan_auth",
+      "routeLabel": "Scan (Auth)",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_390_844",
+      "routeKey": "skin_journey",
+      "routeLabel": "Skin Journey Comparison",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_390_844",
+      "routeKey": "check_ins",
+      "routeLabel": "Skin Check-Ins Gallery",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_390_844",
+      "routeKey": "profile",
+      "routeLabel": "Profile & Privacy",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "mobile_390_844",
+      "routeKey": "consent_modal_gate",
+      "routeLabel": "Consent Modal Gate",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "tablet_768_1024",
+      "routeKey": "homepage",
+      "routeLabel": "Public Homepage",
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "tablet_768_1024",
+      "routeKey": "login",
+      "routeLabel": "Login Page",
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "tablet_768_1024",
+      "routeKey": "forgot_password",
+      "routeLabel": "Forgot Password",
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "tablet_768_1024",
+      "routeKey": "terms",
+      "routeLabel": "Terms of Service",
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "tablet_768_1024",
+      "routeKey": "privacy",
+      "routeLabel": "Privacy Policy",
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "tablet_768_1024",
+      "routeKey": "guest_disclosure_modal",
+      "routeLabel": "Guest Disclosure Modal",
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "tablet_768_1024",
+      "routeKey": "dashboard",
+      "routeLabel": "Dashboard",
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "tablet_768_1024",
+      "routeKey": "scan_auth",
+      "routeLabel": "Scan (Auth)",
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "tablet_768_1024",
+      "routeKey": "skin_journey",
+      "routeLabel": "Skin Journey Comparison",
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "tablet_768_1024",
+      "routeKey": "check_ins",
+      "routeLabel": "Skin Check-Ins Gallery",
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "tablet_768_1024",
+      "routeKey": "profile",
+      "routeLabel": "Profile & Privacy",
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "tablet_768_1024",
+      "routeKey": "consent_modal_gate",
+      "routeLabel": "Consent Modal Gate",
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "desktop_1440_900",
+      "routeKey": "homepage",
+      "routeLabel": "Public Homepage",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "desktop_1440_900",
+      "routeKey": "login",
+      "routeLabel": "Login Page",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "desktop_1440_900",
+      "routeKey": "forgot_password",
+      "routeLabel": "Forgot Password",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "desktop_1440_900",
+      "routeKey": "terms",
+      "routeLabel": "Terms of Service",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "desktop_1440_900",
+      "routeKey": "privacy",
+      "routeLabel": "Privacy Policy",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "desktop_1440_900",
+      "routeKey": "guest_disclosure_modal",
+      "routeLabel": "Guest Disclosure Modal",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "desktop_1440_900",
+      "routeKey": "dashboard",
+      "routeLabel": "Dashboard",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "desktop_1440_900",
+      "routeKey": "scan_auth",
+      "routeLabel": "Scan (Auth)",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "desktop_1440_900",
+      "routeKey": "skin_journey",
+      "routeLabel": "Skin Journey Comparison",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "desktop_1440_900",
+      "routeKey": "check_ins",
+      "routeLabel": "Skin Check-Ins Gallery",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "desktop_1440_900",
+      "routeKey": "profile",
+      "routeLabel": "Profile & Privacy",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    },
+    {
+      "viewport": "desktop_1440_900",
+      "routeKey": "consent_modal_gate",
+      "routeLabel": "Consent Modal Gate",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "hasOverflow": false,
+      "overflowDelta": 0,
+      "elementsOffScreen": []
+    }
+  ],
+  "interactionResults": [
+    {
+      "viewport": "mobile_360_640",
+      "component": "Guest Disclosure Modal",
+      "type": "modal_reachability",
+      "details": {
+        "found": true,
+        "buttonText": "Agree & Proceed",
+        "canScroll": true,
+        "initialBottom": 669,
+        "scrolledBottom": 595,
+        "buttonReachable": true,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "mobile_360_640",
+      "component": "Navigation Layout",
+      "type": "nav_visibility",
+      "details": {
+        "expectedMobile": true,
+        "bottomNavVisible": true,
+        "sidebarVisible": false,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "mobile_360_640",
+      "component": "BottomNav Navigation Click",
+      "type": "navigation_interaction",
+      "details": {
+        "navigatedTo": "http://localhost:5173/skin-journey"
+      },
+      "passed": true
+    },
+    {
+      "viewport": "mobile_360_640",
+      "component": "Dashboard Bottom Actions",
+      "type": "bottom_clearance",
+      "details": {
+        "found": true,
+        "lastActionText": "View check-in details",
+        "lastActionBottom": 495,
+        "bottomNavTop": 550,
+        "clearance": 55,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "mobile_360_640",
+      "component": "Consent Modal Gate",
+      "type": "modal_scroll_and_reachability",
+      "details": {
+        "found": true,
+        "canScroll": true,
+        "modalClientHeight": 598,
+        "modalScrollHeight": 732,
+        "scrolledBtnBottom": 595,
+        "buttonReachable": true,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "mobile_360_800",
+      "component": "Guest Disclosure Modal",
+      "type": "modal_reachability",
+      "details": {
+        "found": true,
+        "buttonText": "Agree & Proceed",
+        "canScroll": false,
+        "initialBottom": 712,
+        "scrolledBottom": 712,
+        "buttonReachable": true,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "mobile_360_800",
+      "component": "Navigation Layout",
+      "type": "nav_visibility",
+      "details": {
+        "expectedMobile": true,
+        "bottomNavVisible": true,
+        "sidebarVisible": false,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "mobile_360_800",
+      "component": "BottomNav Navigation Click",
+      "type": "navigation_interaction",
+      "details": {
+        "navigatedTo": "http://localhost:5173/skin-journey"
+      },
+      "passed": true
+    },
+    {
+      "viewport": "mobile_360_800",
+      "component": "Dashboard Bottom Actions",
+      "type": "bottom_clearance",
+      "details": {
+        "found": true,
+        "lastActionText": "View check-in details",
+        "lastActionBottom": 655,
+        "bottomNavTop": 710,
+        "clearance": 55,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "mobile_360_800",
+      "component": "Consent Modal Gate",
+      "type": "modal_scroll_and_reachability",
+      "details": {
+        "found": true,
+        "canScroll": false,
+        "modalClientHeight": 732,
+        "modalScrollHeight": 732,
+        "scrolledBtnBottom": 742,
+        "buttonReachable": true,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "mobile_390_844",
+      "component": "Guest Disclosure Modal",
+      "type": "modal_reachability",
+      "details": {
+        "found": true,
+        "buttonText": "Agree & Proceed",
+        "canScroll": false,
+        "initialBottom": 693,
+        "scrolledBottom": 693,
+        "buttonReachable": true,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "mobile_390_844",
+      "component": "Navigation Layout",
+      "type": "nav_visibility",
+      "details": {
+        "expectedMobile": true,
+        "bottomNavVisible": true,
+        "sidebarVisible": false,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "mobile_390_844",
+      "component": "BottomNav Navigation Click",
+      "type": "navigation_interaction",
+      "details": {
+        "navigatedTo": "http://localhost:5173/skin-journey"
+      },
+      "passed": true
+    },
+    {
+      "viewport": "mobile_390_844",
+      "component": "Dashboard Bottom Actions",
+      "type": "bottom_clearance",
+      "details": {
+        "found": true,
+        "lastActionText": "View check-in details",
+        "lastActionBottom": 699,
+        "bottomNavTop": 772,
+        "clearance": 73,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "mobile_390_844",
+      "component": "Consent Modal Gate",
+      "type": "modal_scroll_and_reachability",
+      "details": {
+        "found": true,
+        "canScroll": false,
+        "modalClientHeight": 673,
+        "modalScrollHeight": 673,
+        "scrolledBtnBottom": 735,
+        "buttonReachable": true,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "tablet_768_1024",
+      "component": "Guest Disclosure Modal",
+      "type": "modal_reachability",
+      "details": {
+        "found": true,
+        "buttonText": "Agree & Proceed",
+        "canScroll": false,
+        "initialBottom": 734,
+        "scrolledBottom": 734,
+        "buttonReachable": true,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "tablet_768_1024",
+      "component": "Navigation Layout",
+      "type": "nav_visibility",
+      "details": {
+        "expectedMobile": true,
+        "bottomNavVisible": true,
+        "sidebarVisible": false,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "tablet_768_1024",
+      "component": "BottomNav Navigation Click",
+      "type": "navigation_interaction",
+      "details": {
+        "navigatedTo": "http://localhost:5173/skin-journey"
+      },
+      "passed": true
+    },
+    {
+      "viewport": "tablet_768_1024",
+      "component": "Dashboard Bottom Actions",
+      "type": "bottom_clearance",
+      "details": {
+        "found": true,
+        "lastActionText": "View check-in details",
+        "lastActionBottom": 643,
+        "bottomNavTop": 952,
+        "clearance": 309,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "tablet_768_1024",
+      "component": "Consent Modal Gate",
+      "type": "modal_scroll_and_reachability",
+      "details": {
+        "found": true,
+        "canScroll": false,
+        "modalClientHeight": 521,
+        "modalScrollHeight": 521,
+        "scrolledBtnBottom": 748,
+        "buttonReachable": true,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "desktop_1440_900",
+      "component": "Guest Disclosure Modal",
+      "type": "modal_reachability",
+      "details": {
+        "found": true,
+        "buttonText": "Agree & Proceed",
+        "canScroll": false,
+        "initialBottom": 672,
+        "scrolledBottom": 672,
+        "buttonReachable": true,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "desktop_1440_900",
+      "component": "Navigation Layout",
+      "type": "nav_visibility",
+      "details": {
+        "expectedMobile": false,
+        "bottomNavVisible": false,
+        "sidebarVisible": true,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "viewport": "desktop_1440_900",
+      "component": "Consent Modal Gate",
+      "type": "modal_scroll_and_reachability",
+      "details": {
+        "found": true,
+        "canScroll": false,
+        "modalClientHeight": 521,
+        "modalScrollHeight": 521,
+        "scrolledBtnBottom": 686,
+        "buttonReachable": true,
+        "passed": true
+      },
+      "passed": true
+    }
+  ]
+}

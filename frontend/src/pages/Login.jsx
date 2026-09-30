@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { FiMail, FiLock } from 'react-icons/fi';
-import { GoogleLogin } from '@react-oauth/google';
-import { login, googleLogin } from '../utils/api';
+import { Mail, Lock } from 'lucide-react';
+import GoogleAuthButton from '../components/GoogleAuthButton';
+import { login as apiLogin } from '../utils/api';
+import { useAuth } from '../context/AuthContext';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -12,28 +13,21 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  const { login } = useAuth();
+  
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
     try {
-      await login(email, password);
-      window.location.href = '/'; 
+      const data = await apiLogin(email, password);
+      login(data.user, data.token);
+      
+      const params = new URLSearchParams(window.location.search);
+      const redirect = params.get('redirect') || '/';
+      navigate(redirect, { replace: true });
     } catch (err) {
       setError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleGoogleSuccess = async (credentialResponse) => {
-    setError('');
-    setIsLoading(true);
-    try {
-      await googleLogin(credentialResponse.credential);
-      window.location.href = '/'; 
-    } catch (err) {
-      setError(err.message || 'Google authentication failed');
     } finally {
       setIsLoading(false);
     }
@@ -47,60 +41,39 @@ export default function Login() {
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
+      overflow: 'hidden'
     }}>
-      {/* Decorative Orbs */}
-      <div style={{
-        position: 'absolute',
-        width: '400px',
-        height: '400px',
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%)',
-        top: '10%',
-        left: '-100px',
-        pointerEvents: 'none',
-      }} />
-      <div style={{
-        position: 'absolute',
-        width: '500px',
-        height: '500px',
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%)',
-        bottom: '-100px',
-        right: '-100px',
-        pointerEvents: 'none',
-      }} />
+      {/* Atmospheric blobs */}
+      <div style={{ position: 'absolute', top: '10%', left: '-5%', width: '40%', height: '40%', background: 'radial-gradient(circle, rgba(34,198,142,0.05) 0%, rgba(255,255,255,0) 70%)', zIndex: 0, pointerEvents: 'none' }}></div>
+      <div style={{ position: 'absolute', bottom: '10%', right: '-5%', width: '40%', height: '40%', background: 'radial-gradient(circle, rgba(46,58,110,0.04) 0%, rgba(255,255,255,0) 70%)', zIndex: 0, pointerEvents: 'none' }}></div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
+        className="subtle-card"
         style={{
-          background: 'rgba(255, 255, 255, 0.8)',
-          backdropFilter: 'blur(20px)',
-          borderRadius: '24px',
           padding: '48px',
           width: '100%',
           maxWidth: '480px',
-          boxShadow: '0 25px 50px -12px rgba(59, 130, 246, 0.15)',
-          border: '1px solid rgba(255, 255, 255, 0.8)',
           position: 'relative',
           zIndex: 1,
         }}
       >
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
           <h1 style={{
-            fontSize: '2rem',
-            fontWeight: 800,
+            fontSize: '24px',
+            fontWeight: 700,
             marginBottom: '8px',
-            color: '#1e293b'
+            color: 'var(--color-navy-deep)'
           }}>Welcome Back</h1>
-          <p style={{ color: '#64748b', fontSize: '0.95rem' }}>
+          <p style={{ color: 'var(--color-gray-600)', fontSize: '14px' }}>
             Log in to access your skin analysis history.
           </p>
         </div>
 
         {error && (
-          <div style={{ padding: '12px', background: '#fee2e2', color: '#ef4444', borderRadius: '8px', marginBottom: '20px', fontSize: '0.9rem', textAlign: 'center' }}>
+          <div style={{ padding: '12px', background: 'rgba(232, 99, 74, 0.1)', color: 'var(--color-coral-accent)', borderRadius: '8px', marginBottom: '20px', fontSize: '14px', textAlign: 'center' }}>
             {error}
           </div>
         )}
@@ -108,12 +81,12 @@ export default function Login() {
         <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           {/* Email Input */}
           <div>
-            <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 600, color: '#475569' }}>
+            <label style={{ display: 'block', marginBottom: '8px', fontSize: '13px', fontWeight: 600, color: 'var(--color-navy-deep)' }}>
               Email Address
             </label>
             <div style={{ position: 'relative' }}>
-              <div style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }}>
-                <FiMail />
+              <div style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--color-gray-400)' }}>
+                <Mail size={18} />
               </div>
               <input
                 type="email"
@@ -123,16 +96,17 @@ export default function Login() {
                 required
                 style={{
                   width: '100%',
-                  padding: '14px 16px 14px 44px',
-                  borderRadius: '12px',
-                  border: '1px solid #e2e8f0',
-                  background: 'rgba(255,255,255,0.9)',
-                  fontSize: '1rem',
+                  padding: '12px 16px 12px 44px',
+                  borderRadius: '10px',
+                  border: '1px solid var(--color-gray-200)',
+                  background: '#fff',
+                  fontSize: '14px',
                   outline: 'none',
                   transition: 'border-color 0.2s',
+                  color: 'var(--color-navy-deep)'
                 }}
-                onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
-                onBlur={(e) => e.target.style.borderColor = '#e2e8f0'}
+                onFocus={(e) => e.target.style.borderColor = 'var(--color-navy-deep)'}
+                onBlur={(e) => e.target.style.borderColor = 'var(--color-gray-200)'}
               />
             </div>
           </div>
@@ -140,16 +114,16 @@ export default function Login() {
           {/* Password Input */}
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#475569' }}>
+              <label style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-navy-deep)' }}>
                 Password
               </label>
-              <Link to="/forgot-password" style={{ color: '#3b82f6', fontSize: '0.85rem', textDecoration: 'none', fontWeight: 500 }}>
+              <Link to="/forgot-password" style={{ color: 'var(--color-navy-deep)', fontSize: '12px', textDecoration: 'none', fontWeight: 500 }}>
                 Forgot Password?
               </Link>
             </div>
             <div style={{ position: 'relative' }}>
-              <div style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }}>
-                <FiLock />
+              <div style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--color-gray-400)' }}>
+                <Lock size={18} />
               </div>
               <input
                 type="password"
@@ -159,47 +133,40 @@ export default function Login() {
                 required
                 style={{
                   width: '100%',
-                  padding: '14px 16px 14px 44px',
-                  borderRadius: '12px',
-                  border: '1px solid #e2e8f0',
-                  background: 'rgba(255,255,255,0.9)',
-                  fontSize: '1rem',
+                  padding: '12px 16px 12px 44px',
+                  borderRadius: '10px',
+                  border: '1px solid var(--color-gray-200)',
+                  background: '#fff',
+                  fontSize: '14px',
                   outline: 'none',
                   transition: 'border-color 0.2s',
+                  color: 'var(--color-navy-deep)'
                 }}
-                onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
-                onBlur={(e) => e.target.style.borderColor = '#e2e8f0'}
+                onFocus={(e) => e.target.style.borderColor = 'var(--color-navy-deep)'}
+                onBlur={(e) => e.target.style.borderColor = 'var(--color-gray-200)'}
               />
             </div>
           </div>
 
-          <button type="submit" disabled={isLoading} className="btn-primary" style={{ width: '100%', marginTop: '10px', padding: '16px', justifyContent: 'center', opacity: isLoading ? 0.7 : 1 }}>
+          <button type="submit" disabled={isLoading} className="btn-primary" style={{ width: '100%', marginTop: '10px', justifyContent: 'center', opacity: isLoading ? 0.7 : 1 }}>
             {isLoading ? 'Logging In...' : 'Log In'}
           </button>
         </form>
 
-        <div style={{ display: 'flex', alignItems: 'center', margin: '20px 0', color: '#94a3b8', fontSize: '0.85rem' }}>
-          <div style={{ flex: 1, height: '1px', background: '#e2e8f0' }}></div>
-          <span style={{ padding: '0 10px' }}>or</span>
-          <div style={{ flex: 1, height: '1px', background: '#e2e8f0' }}></div>
+        <div style={{ display: 'flex', alignItems: 'center', margin: '24px 0', color: 'var(--color-gray-400)', fontSize: '12px' }}>
+          <div style={{ flex: 1, height: '1px', background: 'var(--color-gray-200)' }}></div>
+          <span style={{ padding: '0 10px' }}>OR</span>
+          <div style={{ flex: 1, height: '1px', background: 'var(--color-gray-200)' }}></div>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <GoogleLogin
-            onSuccess={handleGoogleSuccess}
-            onError={() => setError('Google Sign-In failed. Please try again.')}
-            useOneTap
-            shape="pill"
-            theme="filled_blue"
-            text="signin_with"
-            size="large"
-            width="100%"
-          />
-        </div>
+        <GoogleAuthButton 
+          onError={(msg) => { setError(msg); setIsLoading(false); }} 
+          onStart={() => { setError(''); setIsLoading(true); }} 
+        />
 
-        <p style={{ textAlign: 'center', marginTop: '24px', fontSize: '0.9rem', color: '#64748b' }}>
+        <p style={{ textAlign: 'center', marginTop: '24px', fontSize: '13px', color: 'var(--color-gray-600)' }}>
           Don't have an account?{' '}
-          <Link to="/signup" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>
+          <Link to="/signup" style={{ color: 'var(--color-navy-deep)', textDecoration: 'none', fontWeight: 600 }}>
             Sign Up
           </Link>
         </p>

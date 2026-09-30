@@ -6,7 +6,7 @@ MODEL_INPUT_SIZE = (224, 224)
 
 
 def preprocess_image(file_storage):
-        try:
+    try:
         image_bytes = file_storage.read()
         image = Image.open(io.BytesIO(image_bytes))
         image = image.convert("RGB")

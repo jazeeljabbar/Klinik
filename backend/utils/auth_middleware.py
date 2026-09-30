@@ -2,7 +2,6 @@ from functools import wraps
 from flask import request, jsonify, current_app
 import jwt
 from models import users_collection, serialize_doc
-from bson.objectid import ObjectId
 import traceback
 
 def token_required(f):
@@ -19,8 +18,9 @@ def token_required(f):
             
         try:
             data = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=["HS256"])
-            user_doc = users_collection.find_one({'_id': ObjectId(data['user_id'])})
-            if not user_doc:
+            user_doc = users_collection.document(data['user_id']).get()
+            
+            if not user_doc.exists:
                 return jsonify({'error': 'Unauthorized', 'message': 'User not found'}), 401
                 
             current_user = serialize_doc(user_doc)

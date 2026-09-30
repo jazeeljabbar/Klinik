@@ -1,0 +1,15 @@
+{
+  "product_name": "KliniK",
+  "company_name": "HOPELABSAI Solution Private Limited",
+  "positioning": "Clinical precision. Human warmth.",
+  "tone": "Empathetic authority, calm, clinically credible, never alarmist",
+  "approved_terms": [
+    "AI-powered assessment",
+    "educational purposes",
+    "skin analysis"
+  ],
+  "forbidden_terms": [
+    "diagnosis",
+    "medical advice"
+  ]
+}

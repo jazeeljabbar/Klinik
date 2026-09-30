@@ -2,33 +2,57 @@
 
 @import "tailwindcss";
 :root {
-  --color-primary: #3b82f6;
-  --color-primary-dark: #2563eb;
-  --color-primary-light: #93c5fd;
-  --color-accent: #8b5cf6;
-  --color-surface: #ffffff;
-  --color-surface-alt: #faf5ff;
-  --color-text: #1e293b;
-  --color-text-secondary: #64748b;
-  --color-border: #f1f5f9;
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
-  --color-severity-clear: #34d399;
-  --color-severity-mild: #a3e635;
-  --color-severity-moderate: #facc15;
-  --color-severity-severe: #fb923c;
-  --color-severity-very-severe: #f43f5e;
-  --glass-bg: rgba(255, 255, 255, 0.65);
-  --glass-border: rgba(255, 255, 255, 0.8);
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
-  --shadow-md: 0 8px 16px -4px rgba(0, 0, 0, 0.04), 0 4px 8px -4px rgba(0, 0, 0, 0.03);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
-  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
-  --radius: 20px;
+  /* Klinik Brand Colors */
+  --color-navy-deep: #0D1B3E;
+  --color-navy-primary: #1B2559;
+  --color-navy-light: #2E3A6E;
+  --color-coral-accent: #E8634A;
+  --color-coral-light: #F4A89A;
+  --color-mint-success: #22C68E;
+  --color-surface: #F7F8FC;
+  --color-gray-100: #F1F3F9;
+  --color-gray-200: #E2E6F0;
+  --color-gray-400: #9BA3BE;
+  --color-gray-600: #6B7394;
+  --color-gray-800: #3A4063;
+  --color-primary-text: #1A1D2E;
+
+  /* Mapped Tokens */
+  --color-primary: var(--color-navy-primary);
+  --color-primary-dark: var(--color-navy-deep);
+  --color-primary-light: var(--color-navy-light);
+  --color-accent: var(--color-coral-accent);
+  --color-surface-alt: var(--color-gray-100);
+  --color-text: var(--color-primary-text);
+  --color-text-secondary: var(--color-gray-600);
+  --color-border: var(--color-gray-200);
+  
+  --color-success: var(--color-mint-success);
+  --color-warning: #F59E0B;
+  --color-danger: #DC2626;
+
+  /* Severity Colors */
+  --color-severity-clear: var(--color-mint-success);
+  --color-severity-mild: var(--color-mint-success);
+  --color-severity-moderate: #FACC15;
+  --color-severity-severe: var(--color-coral-accent);
+  --color-severity-very-severe: #B91C1C;
+
+  /* Glassmorphism */
+  --glass-bg: rgba(247, 248, 252, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.9);
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(13, 27, 62, 0.04);
+  --shadow-md: 0 8px 16px -4px rgba(13, 27, 62, 0.08), 0 4px 8px -4px rgba(13, 27, 62, 0.06);
+  --shadow-lg: 0 20px 25px -5px rgba(13, 27, 62, 0.1), 0 10px 10px -5px rgba(13, 27, 62, 0.04);
+  --shadow-xl: 0 25px 50px -12px rgba(13, 27, 62, 0.15);
+  
+  /* Radii */
+  --radius: 16px;
   --radius-sm: 12px;
-  --radius-lg: 32px;
-  --radius-full: 9999px;
+  --radius-lg: 24px;
+  --radius-full: 16px;
 }
 *,
 *::before,
@@ -47,25 +71,41 @@ html {
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   color: var(--color-text);
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f3f4f6 100%);
+  background: var(--color-surface);
   min-height: 100vh;
   line-height: 1.7;
   letter-spacing: -0.01em;
 }
 .glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,1);
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 8px 16px -4px rgba(13, 27, 62, 0.08);
+  border-radius: 16px;
 }
 
 .glass-strong {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: var(--shadow-xl), inset 0 1px 0 rgba(255,255,255,1);
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 8px 16px -4px rgba(13, 27, 62, 0.08);
+  border-radius: 16px;
+}
+
+.subtle-card {
+  background: #ffffff;
+  border: 1px solid var(--color-gray-200);
+  box-shadow: 0 2px 4px -1px rgba(13, 27, 62, 0.03);
+  border-radius: 12px;
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
 }
 ::-webkit-scrollbar {
   width: 6px;
@@ -188,45 +228,27 @@ body {
 .drop-zone.drag-over {
   border-style: solid;
   border-color: var(--color-accent);
-  background: rgba(244, 63, 94, 0.02);
+  background: rgba(232, 99, 74, 0.05); /* Coral light transparent */
 }
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  background: var(--color-navy-deep);
   color: white;
   border: none;
-  padding: 16px 36px;
-  border-radius: var(--radius-full);
-  font-weight: 500;
-  font-size: 1.05rem;
-  letter-spacing: 0.02em;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25);
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-  transition: left 0.6s ease;
-}
-
-.btn-primary:hover::before {
-  left: 100%;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(13, 27, 62, 0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 24px rgba(59, 130, 246, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(13, 27, 62, 0.2);
 }
 
 .btn-primary:active {
@@ -316,3 +338,29 @@ section {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* Visibility Classes for App Shell */
+@media (min-width: 769px) {
+  .mobile-only-block { display: none !important; }
+  .mobile-only-flex { display: none !important; }
+  .mobile-only-inline { display: none !important; }
+}
+@media (max-width: 768px) {
+  .desktop-only-block { display: none !important; }
+  .desktop-only-flex { display: none !important; }
+  .desktop-only-inline { display: none !important; }
+}
+
+/* Responsive card layout switching (stacks on mobile, row on tablet/desktop) */
+.responsive-split-card {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 640px) {
+  .responsive-split-card {
+    flex-direction: row;
+  }
+}
+
+

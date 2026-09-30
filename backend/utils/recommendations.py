@@ -6,73 +6,65 @@ SEVERITY_CLASSES = [
 ]
 RECOMMENDATIONS = {
     "Clear Skin": {
-        "summary": "Your skin appears clear with no significant acne detected.",
+        "summary": "Your skin appears clear with minimal visible blemishes detected.",
         "tips": [
-            "Continue your current skincare routine — it's working well.",
-            "Use a gentle, pH-balanced cleanser twice daily.",
+            "Maintain your current skincare routine with a gentle cleanser twice daily.",
             "Apply a broad-spectrum SPF 30+ sunscreen every morning.",
-            "Stay hydrated and maintain a balanced diet rich in antioxidants.",
-            "Avoid touching your face frequently to prevent bacterial transfer."
+            "Keep skin hydrated with a lightweight non-comedogenic moisturizer.",
+            "Avoid frequent face touching to help maintain a clean skin barrier."
         ],
-        "products": "Gentle foaming cleanser, lightweight moisturizer, SPF 30+ sunscreen.",
-        "urgency": "low"
+        "products": "Gentle daily cleanser, lightweight moisturizer, broad-spectrum sunscreen.",
+        "urgency": None
     },
     "Mild Acne": {
-        "summary": "Mild acne detected. Minor blemishes that can typically be managed with over-the-counter treatments.",
+        "summary": "Mild blemishes detected. Minor blemishes that are commonly addressed through consistent, gentle skincare.",
         "tips": [
-            "Use a salicylic acid (2%) or benzoyl peroxide (2.5%) cleanser.",
-            "Apply a non-comedogenic moisturizer after cleansing.",
-            "Consider using a retinoid product at night (start with low concentration).",
-            "Avoid picking or squeezing blemishes to prevent scarring.",
-            "Change pillowcases frequently and keep hair away from face."
+            "Cleanse gently twice daily with a mild, non-irritating cleanser.",
+            "Apply a non-comedogenic, oil-free moisturizer to support skin barrier hydration.",
+            "Avoid picking or squeezing blemishes to prevent irritation and barrier damage.",
+            "Consult a board-certified dermatologist for personalized treatment recommendations."
         ],
-        "products": "Salicylic acid cleanser, benzoyl peroxide spot treatment, oil-free moisturizer.",
-        "urgency": "low"
+        "products": "Gentle cleanser, non-comedogenic moisturizer, daily sunscreen.",
+        "urgency": None
     },
     "Moderate Acne": {
-        "summary": "Moderate acne detected. Multiple blemishes present that may benefit from a more targeted treatment approach.",
+        "summary": "Moderate blemishes detected across evaluated areas.",
         "tips": [
-            "Use a combination of benzoyl peroxide and salicylic acid products.",
-            "Consider adding a topical retinoid (adapalene 0.1%) to your nighttime routine.",
-            "Use a gentle, non-foaming cleanser to avoid over-drying the skin.",
-            "Apply niacinamide serum to reduce inflammation and redness.",
-            "Consult a dermatologist if symptoms persist after 6-8 weeks of treatment."
+            "Maintain a consistent, gentle cleansing and moisturizing routine morning and night.",
+            "Avoid harsh scrubs, abrasive sponges, or aggressive exfoliation that can aggravate inflammation.",
+            "Keep hair and hands away from the face, and change pillowcases regularly.",
+            "Consult a board-certified dermatologist if blemishes persist or cause discomfort."
         ],
-        "products": "Adapalene gel, niacinamide serum, gentle cleanser, oil-free SPF moisturizer.",
-        "urgency": "medium"
+        "products": "Gentle non-foaming cleanser, oil-free moisturizer, broad-spectrum SPF.",
+        "urgency": None
     },
     "Severe Acne": {
-        "summary": "Severe acne detected. Significant inflammation present. Professional dermatological consultation is strongly recommended.",
+        "summary": "Significant visible blemishes detected across evaluated areas.",
         "tips": [
-            "Schedule an appointment with a board-certified dermatologist.",
-            "Avoid harsh scrubs or exfoliants that can worsen inflammation.",
-            "Use a very gentle, fragrance-free cleanser.",
-            "Apply prescribed topical treatments as directed by your dermatologist.",
-            "Consider discussing oral medications or combination therapy with your doctor.",
-            "Do not attempt to pop or extract lesions — this can cause permanent scarring."
+            "Consult a board-certified dermatologist for clinical evaluation and personalized care.",
+            "Use an ultra-gentle, fragrance-free cleanser to avoid stripping the skin.",
+            "Do not attempt to squeeze or extract lesions to protect against scarring.",
+            "Follow professional medical guidance regarding appropriate topical or systemic regimens."
         ],
-        "products": "Prescription-strength treatments as recommended by your dermatologist.",
-        "urgency": "high"
+        "products": "Ultra-gentle fragrance-free cleanser, dermatologist-recommended moisturizer.",
+        "urgency": None
     },
     "Very Severe Acne": {
-        "summary": "Very severe acne detected. Extensive inflammation and potential for scarring. Immediate professional medical attention is recommended.",
+        "summary": "Extensive visible blemishes detected. Professional dermatological evaluation is advised.",
         "tips": [
-            "Seek immediate consultation with a dermatologist or skincare specialist.",
-            "Your dermatologist may recommend isotretinoin (Accutane) or other systemic treatments.",
-            "Avoid all harsh products — use only ultra-gentle, dermatologist-approved cleansers.",
-            "Do not pick, squeeze, or touch affected areas.",
-            "Follow your dermatologist's treatment plan strictly for best results.",
-            "Consider discussing hormonal evaluation if applicable.",
-            "Mental health support is available if acne is affecting your well-being."
+            "Consult a board-certified dermatologist or healthcare specialist for formal clinical evaluation.",
+            "Use only ultra-mild, non-irritating cleansers without abrasive agents.",
+            "Avoid manipulating, picking, or scrubbing affected areas.",
+            "Discuss personalized treatment plans directly with a medical provider."
         ],
-        "products": "Dermatologist-prescribed systemic and topical treatments only.",
-        "urgency": "critical"
+        "products": "Ultra-mild, non-irritating skincare products as guided by a physician.",
+        "urgency": None
     }
 }
 
 
 def get_recommendation(predicted_class):
-        if predicted_class in RECOMMENDATIONS:
+    if predicted_class in RECOMMENDATIONS:
         return RECOMMENDATIONS[predicted_class]
     return {
         "summary": "Unable to determine specific recommendations. Please consult a dermatologist.",
@@ -83,7 +75,7 @@ def get_recommendation(predicted_class):
 
 
 def get_severity_index(predicted_class):
-        try:
+    try:
         return SEVERITY_CLASSES.index(predicted_class)
     except ValueError:
         return -1

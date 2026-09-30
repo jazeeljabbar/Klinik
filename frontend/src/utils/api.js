@@ -1,5 +1,9 @@
 import axios from 'axios';
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || (
+  typeof window !== 'undefined' && window.location.hostname && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1'
+    ? `http://${window.location.hostname}:5001`
+    : 'http://127.0.0.1:5001'
+);
 const api = axios.create({
   baseURL: API_BASE_URL,
   timeout: 60000, // 60 second timeout for model inference
@@ -19,9 +23,14 @@ api.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-export async function analyzeImage(imageFile) {
+export async function analyzeImage(imageFile, source = 'unknown', guestConsent = false) {
   const formData = new FormData();
   formData.append('image', imageFile);
+  formData.append('source', source);
+  formData.append('client_capture_timestamp', new Date().toISOString());
+  if (guestConsent) {
+    formData.append('guest_consent', 'true');
+  }
 
   try {
     const response = await api.post('/predict', formData, {
@@ -68,10 +77,6 @@ export async function checkHealth() {
 export async function login(email, password) {
   try {
     const response = await api.post('/api/auth/login', { email, password });
-    if (response.data.token) {
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-    }
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'Login failed');
@@ -81,13 +86,27 @@ export async function login(email, password) {
 export async function signup(userData) {
   try {
     const response = await api.post('/api/auth/signup', userData);
-    if (response.data.token) {
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-    }
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'Signup failed');
+  }
+}
+
+export async function recordConsent(consentData) {
+  try {
+    const response = await api.post('/api/auth/consent', consentData);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'Failed to record consent');
+  }
+}
+
+export async function getCurrentUser() {
+  try {
+    const response = await api.get('/api/auth/me');
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'Failed to fetch current user');
   }
 }
 
@@ -121,19 +140,18 @@ export async function resetPassword(email, otp, newPassword) {
 export async function googleLogin(token) {
   try {
     const response = await api.post('/api/auth/google', { token });
-    if (response.data.token) {
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-    }
     return response.data;
   } catch (error) {
-    throw new Error(error.response?.data?.message || 'Google login failed');
+    const message = error.response?.data?.message || 'Google login failed';
+    const err = new Error(message);
+    err.errorType = error.response?.data?.error_type;
+    err.status = error.response?.status;
+    throw err;
   }
 }
 
 export function logout() {
-  localStorage.removeItem('token');
-  localStorage.removeItem('user');
+  // No-op, managed by AuthContext now
 }
 
 export async function getHistory() {
@@ -151,6 +169,15 @@ export async function saveHistory(historyData) {
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'Failed to save history');
+  }
+}
+
+export async function deleteHistory(historyId) {
+  try {
+    const response = await api.delete(`/api/history/${historyId}`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'Failed to delete history');
   }
 }
 

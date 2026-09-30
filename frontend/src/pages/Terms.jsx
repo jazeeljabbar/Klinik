@@ -5,15 +5,15 @@ export default function Terms() {
   const sections = [
     {
       title: "1. Acceptance of Terms",
-      content: "By accessing and using the SKIN AI application, you agree to be bound by these Terms and Conditions. If you do not agree, you must not use or access the services."
+      content: "By accessing or using the Klinik application—whether through guest scanning or registered accounts—you agree to be bound by these Terms and Conditions. Registered accounts require verified acknowledgement of our Terms, Medical Disclaimer, and Cloud Image Processing authorization. Google Sign-In and existing accounts must confirm required consent before uploading scans or saving check-in history. If you do not agree to these terms, you must not access or use the application."
     },
     {
-      title: "2. Image Data Storage and Usage Policy",
-      content: "By using the scanning features (either uploading an image or using the camera), you explicitly consent to allow HOPELABSAI Solution Private Limited to securely store and utilize your uploaded/captured images. This data will be used to run real-time analysis, display your personal scan history, and train, test, and improve our artificial intelligence and machine learning models for higher efficiency and accuracy."
+      title: "2. Image Upload, Storage, and Processing Policy",
+      content: "When you submit a facial image for analysis (via camera capture or photo upload), the image is transmitted to cloud storage (Google Cloud Storage) and recorded in our database as a pending scan to perform quality validation and automated machine learning assessment. Guest scans require pre-upload disclosure acknowledgement. For registered users, completed scans are automatically saved to their private account history in Google Cloud Storage and Firestore upon successful analysis. For guest scans and unpromoted pending records, uploaded images currently remain stored on cloud infrastructure. No automated bucket lifecycle rule, database TTL, recurring cloud job, or scheduled deletion routine is currently active in live production. Uploaded images remain in cloud storage until an account deletion request is processed or an automated deletion lifecycle is formally deployed. Klinik processes scans using frozen, pre-trained algorithmic models and does not use your photos to train, retrain, or improve machine learning models. Your photos are never distributed publicly and are never sold or transferred to third-party advertisers."
     },
     {
       title: "3. No Medical Advice Disclaimer",
-      content: "The content and analysis provided by SKIN AI are for informational and educational purposes only. It is not, and is not intended to be, a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of a qualified dermatologist or other healthcare providers with any questions regarding a medical condition. Never disregard professional medical advice or delay in seeking it because of something you have read on this application."
+      content: "The content and analysis provided by Klinik are for informational and educational purposes only. It is not, and is not intended to be, a substitute for professional healthcare, skin analysis, or treatment. Always seek the advice of a qualified dermatologist or other healthcare providers with any questions regarding a skin condition. Never disregard professional guidance or delay in seeking it because of something you have read on this application."
     },
     {
       title: "4. User Accounts and Security",
@@ -21,11 +21,11 @@ export default function Terms() {
     },
     {
       title: "5. Intellectual Property",
-      content: "All content, features, logos, graphics, user interface designs, and backend algorithms used in the SKIN AI application are the exclusive property of HOPELABSAI Solution Private Limited and are protected by copyright, trademark, and other intellectual property laws."
+      content: "All content, features, logos, graphics, user interface designs, and backend algorithms used in the Klinik application are the exclusive property of the application operator and are protected by copyright, trademark, and other applicable intellectual property laws."
     },
     {
       title: "6. Limitation of Liability",
-      content: "To the maximum extent permitted by law, HOPELABSAI Solution Private Limited and its directors, employees, or agents shall not be liable for any direct, indirect, incidental, special, or consequential damages resulting from the use of, or inability to use, this application or the analysis results provided."
+      content: "To the maximum extent permitted by law, Klinik and its operators, contributors, or agents shall not be liable for any direct, indirect, incidental, special, or consequential damages resulting from the use of, or inability to use, this application or the analysis results provided."
     },
     {
       title: "7. Modifications to Terms",
@@ -34,7 +34,7 @@ export default function Terms() {
   ];
 
   return (
-    <div style={{ paddingTop: '120px', paddingBottom: '80px', minHeight: '100vh', position: 'relative' }}>
+    <div style={{ paddingTop: '120px', paddingBottom: '80px', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
       {/* Decorative Orbs */}
       <div style={{
         position: 'absolute',
@@ -72,7 +72,7 @@ export default function Terms() {
             padding: '8px 20px',
             borderRadius: '9999px',
             background: 'rgba(59, 130, 246, 0.08)',
-            color: '#3b82f6',
+            color: 'var(--color-primary)',
             fontSize: '0.85rem',
             fontWeight: 600,
             marginBottom: '20px',
@@ -82,10 +82,10 @@ export default function Terms() {
           </div>
 
           <h1 style={{
-            fontFamily: "'Outfit', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: 'clamp(2.2rem, 5vw, 3rem)',
             fontWeight: 800,
-            color: '#0f172a',
+            color: 'var(--color-primary-dark)',
             lineHeight: 1.2,
             marginBottom: '16px',
           }}>
@@ -96,7 +96,7 @@ export default function Terms() {
             fontSize: '0.95rem',
             color: '#64748b',
           }}>
-            Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+            Effective date: September 23, 2026
           </p>
         </motion.div>
 
@@ -117,7 +117,7 @@ export default function Terms() {
           }}
         >
           <p style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.7', margin: 0 }}>
-            Welcome to SKIN AI. Please review the following Terms and Conditions carefully. These terms govern your use of our website, application, services, and technologies managed by <strong>HOPELABSAI Solution Private Limited</strong>.
+            Welcome to Klinik. Please review the following Terms and Conditions carefully. These terms govern your use of our website, application, services, and technologies.
           </p>
 
           <hr style={{ border: 0, borderTop: '1px solid rgba(226, 232, 240, 0.8)', margin: 0 }} />
@@ -125,10 +125,10 @@ export default function Terms() {
           {sections.map((section, idx) => (
             <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <h2 style={{
-                fontFamily: "'Outfit', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: '1.15rem',
                 fontWeight: 700,
-                color: '#1e293b',
+                color: 'var(--color-primary-dark)',
                 margin: 0
               }}>
                 {section.title}
@@ -147,8 +147,8 @@ export default function Terms() {
 
           <hr style={{ border: 0, borderTop: '1px solid rgba(226, 232, 240, 0.8)', margin: 0 }} />
 
-          <p style={{ fontSize: '0.85rem', color: '#64748b', textAlign: 'center', margin: 0, lineHeight: 1.6 }}>
-            If you have any questions or concerns regarding these Terms and Conditions, please contact us at <a href="mailto:support@hopelabsai.com" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>support@hopelabsai.com</a>.
+          <p style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.95rem' }}>
+            If you have questions or concerns regarding these Terms and Conditions, inquiries may be directed to the application operator.
           </p>
         </motion.div>
       </div>

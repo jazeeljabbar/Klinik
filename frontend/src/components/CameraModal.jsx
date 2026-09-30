@@ -178,7 +178,7 @@ export default function CameraModal({ isOpen, onClose, onCapture }) {
                   cursor: (error || !stream) ? 'not-allowed' : 'pointer',
                 }}
               >
-                <FiCamera /> Snap Photo
+                <FiCamera /> Take Photo
               </button>
             </div>
           </motion.div>

@@ -1,0 +1,29 @@
+# Virtual environments
+venv/
+.venv/
+env/
+.env*
+
+# Local uploads and data
+data/
+uploads/
+*.bak
+
+# Cache and testing
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+tests/
+.keras/
+
+# Local credentials (CRITICAL: prevent leaking service account keys into image)
+firebase-credentials.json
+*.json
+!models/deploy.prototxt
+!models/res10_300x300_ssd_iter_140000.caffemodel
+
+# Version control
+.git
+.gitignore

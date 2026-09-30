@@ -1,42 +1,34 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FiClock, FiChevronDown, FiChevronUp } from 'react-icons/fi';
-import { HiOutlineDocumentText } from 'react-icons/hi';
+import { motion } from 'framer-motion';
+import { Sparkles, ArrowRight, Image as ImageIcon } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { getHistory } from '../utils/api';
-
-const SEVERITY_COLORS = {
-  'Clear Skin': '#1aca5bff',
-  'Mild Acne': '#84cc16',
-  'Moderate Acne': '#eab308',
-  'Severe Acne': '#f97316',
-  'Very Severe Acne': '#ef4444',
-};
+import { getDisplayLabel } from '../utils/labels';
+import AuthenticatedImage from './AuthenticatedImage';
 
 export default function HistorySection({ refreshTrigger }) {
   const [history, setHistory] = useState([]);
-  const [expanded, setExpanded] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
       setHistory([]);
+      setLoading(false);
       return;
     }
 
     getHistory()
       .then(data => {
-        const formatted = data.map(entry => ({
-          id: entry.id || entry._id,
-          predicted_class: entry.predicted_class,
-          confidence: entry.confidence,
-          timestamp: entry.timestamp,
-          imagePreview: entry.image_url,
-          imageName: "Scan Result"
-        }));
-        setHistory(formatted);
+        setHistory(data || []);
       })
       .catch(err => {
         console.error("Failed to fetch history:", err);
         setHistory([]);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [refreshTrigger]);
 
@@ -46,168 +38,103 @@ export default function HistorySection({ refreshTrigger }) {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
     });
   };
 
-  if (history.length === 0 || !localStorage.getItem('token')) return null;
+  const token = localStorage.getItem('token');
+  if (!token) return null;
+
+  if (loading) return null; // Or a small skeleton loader
+
+  const hasScans = history.length > 0;
+  const latestScan = hasScans ? history[0] : null;
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      style={{ paddingBottom: '20px' }}
-    >
-      <div className="container" style={{ maxWidth: '800px' }}>
-        {/* Section Header */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: '20px',
-          flexWrap: 'wrap',
-          gap: '12px',
-        }}>
-          <button
-            onClick={() => setExpanded(!expanded)}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              padding: 0,
-            }}
-          >
-            <FiClock style={{ color: '#2563eb', fontSize: '1.2rem' }} />
-            <h2 style={{
-              fontFamily: "'Outfit', sans-serif",
-              fontSize: '1.3rem',
-              fontWeight: 700,
-              color: '#0f172a',
-            }}>
-              Your Analysis History
-            </h2>
-            <span style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '26px',
-              height: '26px',
-              borderRadius: '50%',
-              background: 'rgba(37, 99, 235, 0.1)',
-              color: '#2563eb',
-              fontSize: '0.78rem',
-              fontWeight: 700,
-            }}>
-              {history.length}
-            </span>
-            <span style={{ color: '#94a3b8', fontSize: '1rem' }}>
-              {expanded ? <FiChevronUp /> : <FiChevronDown />}
-            </span>
-          </button>
+    <div style={{ background: 'var(--color-navy-deep)', padding: '64px 16px', color: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '64px' }}>
+      
+      <div style={{ maxWidth: '600px', width: '100%', textAlign: 'center' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '48px', height: '48px', borderRadius: '16px', background: 'rgba(255,255,255,0.05)', marginBottom: '24px' }}>
+          <Sparkles size={24} color="#FACC15" />
         </div>
 
-        {/* History List */}
-        <AnimatePresence>
-          {expanded && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              style={{ overflow: 'hidden' }}
-            >
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                {history.map((entry, index) => {
-                  const severityColor = SEVERITY_COLORS[entry.predicted_class] || '#64748b';
-                  return (
-                    <motion.div
-                      key={entry.id}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 20 }}
-                      transition={{ delay: index * 0.05 }}
-                      className="glass"
-                      style={{
-                        borderRadius: '14px',
-                        padding: '16px 20px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '16px',
-                        borderLeft: `3px solid ${severityColor}`,
-                      }}
-                    >
-                      {/* Thumbnail or icon */}
-                      <div style={{
-                        width: '44px',
-                        height: '44px',
-                        borderRadius: '10px',
-                        overflow: 'hidden',
-                        flexShrink: 0,
-                        background: '#f1f5f9',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}>
-                        {entry.imagePreview ? (
-                          <img
-                            src={entry.imagePreview}
-                            alt=""
-                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                          />
-                        ) : (
-                          <HiOutlineDocumentText style={{ color: '#94a3b8', fontSize: '1.2rem' }} />
-                        )}
-                      </div>
-
-                      {/* Info */}
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '8px',
-                          marginBottom: '4px',
-                        }}>
-                          <span style={{
-                            fontWeight: 700,
-                            fontSize: '0.9rem',
-                            color: severityColor,
-                          }}>
-                            {entry.predicted_class}
-                          </span>
-                          <span style={{
-                            padding: '2px 10px',
-                            borderRadius: '9999px',
-                            background: 'rgba(37, 99, 235, 0.08)',
-                            color: '#2563eb',
-                            fontSize: '0.72rem',
-                            fontWeight: 600,
-                          }}>
-                            {entry.confidence}%
-                          </span>
-                        </div>
-                        <p style={{
-                          fontSize: '0.75rem',
-                          color: '#94a3b8',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                          whiteSpace: 'nowrap',
-                        }}>
-                          {entry.imageName} • {formatDate(entry.timestamp)}
-                        </p>
-                      </div>
-                    </motion.div>
-                  );
-                })}
+        {hasScans ? (
+          <>
+            <h2 style={{ fontSize: '28px', fontWeight: 700, marginBottom: '16px' }}>Your Skin Journey</h2>
+            <p style={{ fontSize: '16px', color: 'var(--color-gray-400)', marginBottom: '32px', lineHeight: 1.6, maxWidth: '480px', margin: '0 auto 32px' }}>
+              Upload photos, monitor changes over time, and stay consistent with your skincare routine.
+            </p>
+            
+            {/* Latest Scan Summary */}
+            <div style={{
+              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              borderRadius: '16px',
+              padding: '16px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '16px',
+              textAlign: 'left',
+              marginBottom: '32px'
+            }}>
+              <div style={{ width: '48px', height: '48px', borderRadius: '12px', overflow: 'hidden', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <AuthenticatedImage scan={latestScan} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: '13px', color: 'var(--color-gray-400)', marginBottom: '4px' }}>Latest Check-in • {formatDate(latestScan.timestamp)}</div>
+                <div style={{ fontSize: '15px', fontWeight: 600, color: '#fff' }}>{getDisplayLabel(latestScan.predicted_class)}</div>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
+              <Link to="/skin-journey" style={{ 
+                background: '#fff', 
+                color: 'var(--color-navy-deep)', 
+                padding: '14px 32px', 
+                borderRadius: '12px', 
+                fontWeight: 600, 
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                transition: 'all 0.2s'
+              }}>
+                View My Skin Journey
+                <ArrowRight size={18} />
+              </Link>
+              <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ background: 'transparent', border: 'none', color: '#fff', padding: '12px 24px', fontWeight: 600, fontSize: '15px', cursor: 'pointer' }}>
+                Add a New Scan
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <h2 style={{ fontSize: '28px', fontWeight: 700, marginBottom: '16px' }}>Your skin journey starts with your first scan</h2>
+            <p style={{ fontSize: '16px', color: 'var(--color-gray-400)', marginBottom: '40px', lineHeight: 1.6, maxWidth: '480px', margin: '0 auto 40px' }}>
+              Upload photos, monitor changes over time, and stay consistent with your skincare routine.
+            </p>
+            <button 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              style={{ 
+                background: '#fff', 
+                color: 'var(--color-navy-deep)', 
+                padding: '14px 32px', 
+                borderRadius: '12px', 
+                fontWeight: 600, 
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              Start My First Scan
+              <ArrowRight size={18} />
+            </button>
+          </>
+        )}
       </div>
-    </motion.section>
+
+    </div>
   );
 }

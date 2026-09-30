@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaMicroscope } from 'react-icons/fa';
+import { Crosshair } from 'lucide-react';
 
 export default function LoadingScreen() {
   return (
@@ -8,6 +8,7 @@ export default function LoadingScreen() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
+      className="glass-strong"
       style={{
         position: 'fixed',
         inset: 0,
@@ -16,122 +17,22 @@ export default function LoadingScreen() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'rgba(255, 255, 255, 0.85)',
-        backdropFilter: 'blur(24px)',
-        WebkitBackdropFilter: 'blur(24px)',
+        gap: '24px',
+        border: 'none',
+        borderRadius: 0,
       }}
     >
-      {/* Outer spinning ring */}
-      <div style={{ position: 'relative', width: '120px', height: '120px' }}>
-        {/* Ring 1 */}
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            borderRadius: '50%',
-            border: '4px solid transparent',
-            borderTopColor: '#2563eb',
-            borderRightColor: '#2563eb',
-          }}
-        />
-        {/* Ring 2 (counter-rotate) */}
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
-          style={{
-            position: 'absolute',
-            inset: '12px',
-            borderRadius: '50%',
-            border: '3px solid transparent',
-            borderTopColor: '#06b6d4',
-            borderLeftColor: '#06b6d4',
-          }}
-        />
-        {/* Ring 3 */}
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-          style={{
-            position: 'absolute',
-            inset: '24px',
-            borderRadius: '50%',
-            border: '2px solid transparent',
-            borderTopColor: '#8b5cf6',
-          }}
-        />
-        {/* Center Icon */}
-        <motion.div
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-          style={{
-            position: 'absolute',
-            inset: '36px',
-            borderRadius: '50%',
-            background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(6, 182, 212, 0.1))',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#2563eb',
-            fontSize: '1.4rem',
-          }}
-        >
-          <FaMicroscope />
-        </motion.div>
+      <div style={{ position: 'relative', width: '80px', height: '80px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        {/* Subtle coral glow at center */}
+        <div style={{ position: 'absolute', width: '40px', height: '40px', background: 'var(--color-coral-accent)', filter: 'blur(20px)', opacity: 0.25, borderRadius: '50%' }}></div>
+        <Crosshair size={40} color="var(--color-navy-deep)" style={{ animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite' }} />
+        <style>{`
+          @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } }
+        `}</style>
       </div>
-
-      {/* Text */}
-      <motion.p
-        animate={{ opacity: [0.5, 1, 0.5] }}
-        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        style={{
-          marginTop: '32px',
-          fontSize: '1.15rem',
-          fontWeight: 600,
-          color: '#0f172a',
-          fontFamily: "'Outfit', sans-serif",
-        }}
-      >
-        Analyzing skin condition...
-      </motion.p>
-
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        style={{
-          marginTop: '12px',
-          fontSize: '0.875rem',
-          color: '#94a3b8',
-        }}
-      >
-        This may take a few seconds
-      </motion.p>
-
-      {/* Progress dots */}
-      <div style={{ display: 'flex', gap: '8px', marginTop: '24px' }}>
-        {[0, 1, 2].map((i) => (
-          <motion.div
-            key={i}
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.3, 1, 0.3],
-            }}
-            transition={{
-              duration: 1,
-              repeat: Infinity,
-              delay: i * 0.2,
-              ease: 'easeInOut',
-            }}
-            style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, #2563eb, #06b6d4)',
-            }}
-          />
-        ))}
+      <div style={{ textAlign: 'center' }}>
+        <h3 style={{ fontSize: '18px', fontWeight: 600, color: 'var(--color-navy-deep)', margin: '0 0 8px 0' }}>Looking closely at your skin...</h3>
+        <p style={{ fontSize: '14px', color: 'var(--color-gray-600)', margin: 0 }}>Preparing your personalised skin analysis.</p>
       </div>
     </motion.div>
   );

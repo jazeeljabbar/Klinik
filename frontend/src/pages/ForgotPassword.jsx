@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FiMail, FiLock, FiArrowRight, FiCheckCircle } from 'react-icons/fi';
 import { requestOtp, verifyOtp, resetPassword } from '../utils/api';
 
@@ -12,7 +12,6 @@ export default function ForgotPassword() {
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
   const otpRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
   const inputStyle = {
@@ -111,6 +110,7 @@ export default function ForgotPassword() {
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
+      overflow: 'hidden'
     }}>
       {/* Decorative Orbs */}
       <div style={{
@@ -154,7 +154,7 @@ export default function ForgotPassword() {
                   <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 600, color: '#475569' }}>Email Address</label>
                   <div style={{ position: 'relative' }}>
                     <div style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }}><FiMail /></div>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#3b82f6'} onBlur={(e) => e.target.style.borderColor = '#e2e8f0'} />
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" style={inputStyle} onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'} onBlur={(e) => e.target.style.borderColor = '#e2e8f0'} />
                   </div>
                 </div>
                 <button type="submit" disabled={isLoading} className="btn-primary" style={{ width: '100%', padding: '16px', justifyContent: 'center', opacity: isLoading ? 0.7 : 1 }}>
@@ -196,7 +196,7 @@ export default function ForgotPassword() {
                         outline: 'none',
                         transition: 'border-color 0.2s',
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
+                      onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'}
                       onBlur={(e) => e.target.style.borderColor = '#e2e8f0'}
                     />
                   ))}
@@ -220,14 +220,14 @@ export default function ForgotPassword() {
                   <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 600, color: '#475569' }}>New Password</label>
                   <div style={{ position: 'relative' }}>
                     <div style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }}><FiLock /></div>
-                    <input type="password" value={passwords.newPassword} onChange={(e) => setPasswords({...passwords, newPassword: e.target.value})} placeholder="Enter new password" style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#3b82f6'} onBlur={(e) => e.target.style.borderColor = '#e2e8f0'} />
+                    <input type="password" value={passwords.newPassword} onChange={(e) => setPasswords({...passwords, newPassword: e.target.value})} placeholder="Enter new password" style={inputStyle} onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'} onBlur={(e) => e.target.style.borderColor = '#e2e8f0'} />
                   </div>
                 </div>
                 <div style={{ marginBottom: '32px' }}>
                   <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 600, color: '#475569' }}>Confirm New Password</label>
                   <div style={{ position: 'relative' }}>
                     <div style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }}><FiLock /></div>
-                    <input type="password" value={passwords.confirmPassword} onChange={(e) => setPasswords({...passwords, confirmPassword: e.target.value})} placeholder="Confirm new password" style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#3b82f6'} onBlur={(e) => e.target.style.borderColor = '#e2e8f0'} />
+                    <input type="password" value={passwords.confirmPassword} onChange={(e) => setPasswords({...passwords, confirmPassword: e.target.value})} placeholder="Confirm new password" style={inputStyle} onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'} onBlur={(e) => e.target.style.borderColor = '#e2e8f0'} />
                   </div>
                 </div>
                 <button type="submit" disabled={isLoading} className="btn-primary" style={{ width: '100%', padding: '16px', justifyContent: 'center', opacity: isLoading ? 0.7 : 1 }}>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="85" viewBox="0 0 220 85">
+  <foreignObject width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;700&amp;display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .logo-wrap { text-align: center; padding: 5px 0; }
+        .wordmark {
+          font-family: 'Inter', sans-serif;
+          font-size: 72px;
+          color: #1B2559;
+          letter-spacing: -3px;
+          line-height: 1;
+          display: inline-block;
+        }
+        .k { font-weight: 700; }
+        .light { font-weight: 300; }
+        .i-crosshair {
+          position: relative;
+          display: inline-block;
+          font-weight: 300;
+        }
+        .i-crosshair::before {
+          content: '';
+          position: absolute;
+          width: 6px; height: 6px;
+          background: #E8634A;
+          border-radius: 50%;
+          top: 10px;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        .i-crosshair::after {
+          content: '';
+          position: absolute;
+          width: 14px; height: 14px;
+          border: 1.2px solid #E8634A;
+          border-radius: 50%;
+          top: 6px;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        .ch, .cv { position: absolute; background: #E8634A; }
+        .ch { width: 18px; height: 1px; top: 12.5px; left: 50%; transform: translateX(-50%); }
+        .cv { width: 1px; height: 18px; top: 4px; left: 50%; transform: translateX(-50%); }
+      </style>
+      <div class="logo-wrap">
+        <div class="wordmark"><span class="k">K</span><span class="light">l</span><span class="i-crosshair"><span class="ch"></span><span class="cv"></span>ı</span><span class="light">n</span><span class="light">i</span><span class="k">K</span></div>
+      </div>
+    </div>
+  </foreignObject>
+</svg>

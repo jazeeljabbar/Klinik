@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HiMenuAlt3, HiX } from 'react-icons/hi';
-import { MdFaceRetouchingNatural } from 'react-icons/md';
+import { Menu, X } from 'lucide-react';
 import { logout } from '../utils/api';
 
 export default function Navbar() {
@@ -19,23 +18,27 @@ export default function Navbar() {
     logout();
     navigate('/login');
   };
+  
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+  
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
 
   const navLinks = [
     { to: '/', label: 'Home' },
+    { to: '/skin-journey', label: 'Skin Journey' },
     { to: '/about', label: 'About' },
-    { to: '/contact', label: 'Contact' },
+    { to: '/how-it-works', label: 'How It Works' },
   ];
 
   return (
     <nav
+      className={scrolled ? 'glass-nav' : ''}
       style={{
         position: 'fixed',
         top: 0,
@@ -43,11 +46,7 @@ export default function Navbar() {
         right: 0,
         zIndex: 1000,
         transition: 'all 0.3s ease',
-        background: scrolled ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.6)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: scrolled ? '1px solid rgba(226,232,240,0.8)' : '1px solid transparent',
-        boxShadow: scrolled ? '0 4px 20px rgba(0,0,0,0.06)' : 'none',
+        background: scrolled ? 'rgba(255,255,255,0.84)' : 'transparent',
       }}
     >
       <div className="container" style={{
@@ -57,25 +56,19 @@ export default function Navbar() {
         height: '72px',
       }}>
         {/* Logo */}
-        <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
           <motion.div
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
           >
-            <img src="/logo.png" alt="SKIN AI Logo" style={{ height: '36px', width: '36px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #3b82f6' }} />
+            <img 
+              src="/klinik-logo-wordmark.png" 
+              alt="Klinik Logo" 
+              className="navbar-logo"
+              style={{ display: 'block', height: '36px', width: 'auto' }} 
+              onError={(e) => { e.target.src = '/klinik-logo-vector.svg'; }}
+            />
           </motion.div>
-          <span style={{
-            fontFamily: "'Outfit', sans-serif",
-            fontWeight: 800,
-            fontSize: '1.25rem',
-          }} className="text-gradient">
-            SKIN AI
-          </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -94,21 +87,21 @@ export default function Navbar() {
                 textDecoration: 'none',
                 padding: '8px 20px',
                 borderRadius: '9999px',
-                fontSize: '0.95rem',
+                fontSize: '15px',
                 fontWeight: 500,
                 transition: 'all 0.3s ease',
-                color: location.pathname === link.to ? '#3b82f6' : '#64748b',
-                background: location.pathname === link.to ? 'rgba(59, 130, 246, 0.08)' : 'transparent',
+                color: location.pathname === link.to ? 'var(--color-navy-deep)' : 'var(--color-gray-600)',
+                background: location.pathname === link.to ? 'rgba(13, 27, 62, 0.04)' : 'transparent',
               }}
               onMouseOver={(e) => {
                 if (location.pathname !== link.to) {
-                  e.target.style.color = '#3b82f6';
-                  e.target.style.background = 'rgba(59, 130, 246, 0.04)';
+                  e.target.style.color = 'var(--color-navy-deep)';
+                  e.target.style.background = 'rgba(13, 27, 62, 0.04)';
                 }
               }}
               onMouseOut={(e) => {
                 if (location.pathname !== link.to) {
-                  e.target.style.color = '#64748b';
+                  e.target.style.color = 'var(--color-gray-600)';
                   e.target.style.background = 'transparent';
                 }
               }}
@@ -116,22 +109,22 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <div style={{ width: '1px', height: '24px', background: '#e2e8f0', margin: '0 8px' }} />
+          <div style={{ width: '1px', height: '24px', background: 'rgba(27,37,89,0.1)', margin: '0 8px' }} />
           {token ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              <span style={{ fontSize: '0.95rem', fontWeight: 500, color: '#475569' }}>
+              <span style={{ fontSize: '15px', fontWeight: 500, color: 'var(--color-navy-deep)' }}>
                 Hi, {user?.name?.split(' ')[0] || 'User'}
               </span>
-              <button onClick={handleLogout} style={{ background: 'none', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '8px 16px', fontSize: '0.95rem', fontWeight: 600, color: '#64748b', cursor: 'pointer' }}>
+              <button onClick={handleLogout} style={{ background: 'none', border: '1px solid var(--color-gray-200)', borderRadius: '12px', padding: '10px 24px', fontSize: '15px', fontWeight: 600, color: 'var(--color-navy-deep)', cursor: 'pointer' }}>
                 Log Out
               </button>
             </div>
           ) : (
             <>
-              <Link to="/login" style={{ textDecoration: 'none', padding: '8px 16px', fontSize: '0.95rem', fontWeight: 600, color: '#3b82f6' }}>
+              <Link to="/login" style={{ textDecoration: 'none', padding: '10px 24px', fontSize: '15px', fontWeight: 600, color: 'var(--color-navy-deep)' }}>
                 Log In
               </Link>
-              <Link to="/signup" className="btn-primary" style={{ padding: '8px 20px', fontSize: '0.95rem' }}>
+              <Link to="/signup" style={{ background: 'var(--color-navy-deep)', color: 'white', textDecoration: 'none', padding: '10px 24px', borderRadius: '12px', fontSize: '15px', fontWeight: 600, display: 'inline-flex', alignItems: 'center' }}>
                 Sign Up
               </Link>
             </>
@@ -146,16 +139,14 @@ export default function Navbar() {
             display: 'none',
             background: 'none',
             border: 'none',
-            fontSize: '1.6rem',
-            color: '#0f172a',
+            color: 'var(--color-navy-deep)',
             cursor: 'pointer',
             padding: '8px',
             borderRadius: '8px',
-            transition: 'background 0.2s',
           }}
           aria-label="Toggle navigation menu"
         >
-          {isOpen ? <HiX /> : <HiMenuAlt3 />}
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
@@ -189,10 +180,10 @@ export default function Navbar() {
                       display: 'block',
                       padding: '12px 16px',
                       borderRadius: '12px',
-                      fontSize: '1rem',
+                      fontSize: '15px',
                       fontWeight: 500,
-                      color: location.pathname === link.to ? '#3b82f6' : '#0f172a',
-                      background: location.pathname === link.to ? 'rgba(59, 130, 246, 0.08)' : 'transparent',
+                      color: location.pathname === link.to ? 'var(--color-navy-deep)' : 'var(--color-gray-600)',
+                      background: location.pathname === link.to ? 'rgba(13, 27, 62, 0.04)' : 'transparent',
                     }}
                   >
                     {link.label}
@@ -200,17 +191,17 @@ export default function Navbar() {
                 </motion.div>
               ))}
               <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}>
-                <div style={{ height: '1px', background: '#e2e8f0', margin: '8px 0' }} />
+                <div style={{ height: '1px', background: 'rgba(27,37,89,0.1)', margin: '8px 0' }} />
                 {token ? (
-                  <button onClick={() => { handleLogout(); setIsOpen(false); }} style={{ width: '100%', background: 'none', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '12px', marginTop: '8px', fontSize: '1rem', fontWeight: 600, color: '#64748b', cursor: 'pointer' }}>
+                  <button onClick={() => { handleLogout(); setIsOpen(false); }} style={{ width: '100%', background: 'none', border: '1px solid var(--color-gray-200)', borderRadius: '12px', padding: '12px', marginTop: '8px', fontSize: '15px', fontWeight: 600, color: 'var(--color-navy-deep)', cursor: 'pointer' }}>
                     Log Out
                   </button>
                 ) : (
                   <>
-                    <Link to="/login" onClick={() => setIsOpen(false)} style={{ textDecoration: 'none', display: 'block', padding: '12px 16px', color: '#3b82f6', fontWeight: 600, textAlign: 'center' }}>
+                    <Link to="/login" onClick={() => setIsOpen(false)} style={{ textDecoration: 'none', display: 'block', padding: '12px 16px', color: 'var(--color-navy-deep)', fontWeight: 600, textAlign: 'center' }}>
                       Log In
                     </Link>
-                    <Link to="/signup" onClick={() => setIsOpen(false)} className="btn-primary" style={{ display: 'flex', justifyContent: 'center', marginTop: '8px' }}>
+                    <Link to="/signup" onClick={() => setIsOpen(false)} style={{ background: 'var(--color-navy-deep)', color: 'white', textDecoration: 'none', display: 'block', padding: '12px 16px', borderRadius: '12px', fontSize: '15px', fontWeight: 600, textAlign: 'center', marginTop: '8px' }}>
                       Sign Up
                     </Link>
                   </>
@@ -221,11 +212,15 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* Responsive styles injected */}
       <style>{`
+        .navbar-logo {
+          width: 125px;
+          height: auto;
+        }
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .mobile-menu-btn { display: block !important; }
+          .navbar-logo { width: 110px; }
         }
       `}</style>
     </nav>

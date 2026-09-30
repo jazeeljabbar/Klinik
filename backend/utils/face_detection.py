@@ -14,7 +14,7 @@ DNN_CONFIDENCE_THRESHOLD = 0.60
 _face_net = None
 
 def _load_face_net():
-        global _face_net
+    global _face_net
     if _face_net is not None:
         return _face_net
     
@@ -28,8 +28,13 @@ def _load_face_net():
     return _face_net
 
 
-def detect_face(file_storage):
-        try:
+def detect_face_with_boxes(file_storage):
+    """
+    Detects faces and returns (has_face, face_count, face_msg, face_boxes).
+    Each box in face_boxes is a dict:
+      {'box': (x1, y1, x2, y2), 'confidence': float, 'is_partial': bool}
+    """
+    try:
         file_storage.seek(0)
         image_bytes = file_storage.read()
         file_storage.seek(0)  # Reset for downstream processing
@@ -39,6 +44,8 @@ def detect_face(file_storage):
         img_bgr = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
         (h, w) = img_bgr.shape[:2]
         
+        face_boxes = []
+
         # ── Try DNN-based detection (primary, high accuracy) ──
         net = _load_face_net()
         
@@ -62,17 +69,37 @@ def detect_face(file_storage):
                 if confidence > DNN_CONFIDENCE_THRESHOLD:
                     face_count += 1
                     best_confidence = max(best_confidence, confidence)
+                    box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
+                    x1, y1, x2, y2 = box.astype("int")
+                    x1 = max(0, x1)
+                    y1 = max(0, y1)
+                    x2 = min(w, x2)
+                    y2 = min(h, y2)
+
+                    # Determine if framing is partial/profile (boundary truncation)
+                    # When face bounding box touches or is right against frame borders:
+                    is_partial = (
+                        x1 <= max(4, int(0.02 * w)) or
+                        y1 <= max(4, int(0.02 * h)) or
+                        x2 >= min(w - 4, int(0.98 * w)) or
+                        y2 >= min(h - 4, int(0.98 * h))
+                    )
+                    face_boxes.append({
+                        'box': (x1, y1, x2, y2),
+                        'confidence': confidence,
+                        'is_partial': is_partial
+                    })
             
             if face_count == 0:
                 return False, 0, (
                     "No human face detected in the image. "
                     "Please upload a clear photo of your face for accurate acne analysis."
-                )
+                ), []
             
             return True, face_count, (
                 f"Face detected successfully "
                 f"({face_count} face(s), confidence: {best_confidence:.0%})."
-            )
+            ), face_boxes
         
         # ── Fallback: Haar Cascade (if DNN model files are missing) ──
         print("[!] Falling back to Haar Cascade face detection.")
@@ -82,15 +109,24 @@ def detect_face(file_storage):
         raise ValueError(f"Face detection failed: {str(e)}")
 
 
+def detect_face(file_storage):
+    """
+    Backward-compatible 3-tuple return for callers and test fixtures.
+    """
+    has_face, face_count, face_msg, _ = detect_face_with_boxes(file_storage)
+    return has_face, face_count, face_msg
+
+
 def _haar_cascade_fallback(img_bgr):
-        gray = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
+    (h, w) = img_bgr.shape[:2]
+    gray = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
     gray = cv2.equalizeHist(gray)
     
     cascade_path = cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
     face_cascade = cv2.CascadeClassifier(cascade_path)
     
     if face_cascade.empty():
-        return True, 0, "Face detection unavailable — proceeding with analysis."
+        return True, 0, "Face detection unavailable — proceeding with analysis.", []
     faces = face_cascade.detectMultiScale(
         gray,
         scaleFactor=1.05,
@@ -100,11 +136,26 @@ def _haar_cascade_fallback(img_bgr):
     )
     
     face_count = len(faces)
+    face_boxes = []
+    for (x, y, fw, fh) in faces:
+        x1, y1, x2, y2 = x, y, x + fw, y + fh
+        is_partial = (
+            x1 <= max(4, int(0.02 * w)) or
+            y1 <= max(4, int(0.02 * h)) or
+            x2 >= min(w - 4, int(0.98 * w)) or
+            y2 >= min(h - 4, int(0.98 * h))
+        )
+        face_boxes.append({
+            'box': (x1, y1, x2, y2),
+            'confidence': 0.85,
+            'is_partial': is_partial
+        })
     
     if face_count == 0:
         return False, 0, (
             "No human face detected in the image. "
             "Please upload a clear photo of your face for accurate acne analysis."
-        )
+        ), []
     
-    return True, face_count, f"Face detected ({face_count} face(s) found)."
+    return True, face_count, f"Face detected ({face_count} face(s) found).", face_boxes
+

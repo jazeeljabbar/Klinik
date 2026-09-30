@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" width="280" height="80" fill="none">
+  <!-- Klinik Faithful Vector Logo -->
+  <g id="wordmark" transform="translate(10, 58)">
+    <!-- First K (Bold) -->
+    <text x="0" y="0" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="800" fill="#1B2559" letter-spacing="-0.5">K</text>
+    
+    <!-- l (Clean tall bar) -->
+    <text x="50" y="0" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="400" fill="#1B2559">l</text>
+    
+    <!-- First i stem -->
+    <text x="76" y="0" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="400" fill="#1B2559">&#x0131;</text>
+    
+    <!-- Coral Crosshair Accent on First i -->
+    <g transform="translate(85.5, -45)">
+      <!-- Target cross lines -->
+      <line x1="-12" y1="0" x2="12" y2="0" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round" />
+      <line x1="0" y1="-12" x2="0" y2="12" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round" />
+      <!-- Target outer ring -->
+      <circle cx="0" cy="0" r="9.5" stroke="#E8634A" stroke-width="1.8" fill="none" />
+      <!-- Target center dot -->
+      <circle cx="0" cy="0" r="3.8" fill="#E8634A" />
+    </g>
+
+    <!-- n -->
+    <text x="110" y="0" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="400" fill="#1B2559">n</text>
+    
+    <!-- Second i (with standard navy dot) -->
+    <text x="156" y="0" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="400" fill="#1B2559">i</text>
+    
+    <!-- Final K (Bold) -->
+    <text x="182" y="0" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="800" fill="#1B2559" letter-spacing="-0.5">K</text>
+  </g>
+</svg>
